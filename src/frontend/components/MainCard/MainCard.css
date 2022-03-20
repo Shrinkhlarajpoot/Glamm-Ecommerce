@@ -1,0 +1,13 @@
+.card__vertical-title title
+{
+    top:-2rem;
+}
+.card ,.card__vertical{
+    max-width:19rem;
+    margin:0 0.2rem;
+}
+@media screen and (max-width:300px) {
+    .card .card__vertical{
+        max-width: 13rem;
+    }
+}
