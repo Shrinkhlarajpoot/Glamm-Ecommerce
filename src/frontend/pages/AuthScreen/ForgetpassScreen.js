@@ -1,6 +1,4 @@
-const ForgetpassScreen=()=>{
-    return (
-        <div>Forget Password</div>
-    )
-}
-export {ForgetpassScreen}
+const ForgetpassScreen = () => {
+  return <div>Forget Password</div>;
+};
+export { ForgetpassScreen };

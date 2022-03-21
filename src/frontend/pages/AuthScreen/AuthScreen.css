@@ -1,116 +1,113 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-.auth__box{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:center;
-    max-width:25rem;
-    height:fit-content;
-    background-color: white;
-    margin: auto;
-    margin-top:3rem;
-    border-radius:5px;
-    padding: 0 0.5rem;
-    box-shadow:var(--box-shadow);
+.auth__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 25rem;
+  height: fit-content;
+  background-color: white;
+  margin: auto;
+  margin-top: 3rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  box-shadow: var(--box-shadow);
 }
-.fa-close{
-    position: absolute;
-    top:0.5rem;
-    right:1rem;
+.fa-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
 }
-.auth__box h3{
-    font-size: 1.5rem;
-    text-align: center;
-     text-transform: uppercase;
-}
-
-.auth__box input{
-    align-content: center;
-    width:95%;
-    padding: 0.8rem 2rem;
-    border-radius:3px;
-    margin:5px 0  0 8px ;
-   border:1px solid var(--primary-color);
-   color:var(--text--color)
+.auth__box h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-
-.auth__logo{
-    color: var(--primary-color);
-    font-size:2rem;
-    font-weight: bold;
-   
-}
-input::placeholder{
-    font-size:1rem;
-    color:var(--primary-color);
-    text-transform: uppercase;
+.auth__box input {
+  align-content: center;
+  width: 95%;
+  padding: 0.8rem 2rem;
+  border-radius: 3px;
+  margin: 5px 0 0 8px;
+  border: 1px solid var(--primary-color);
+  color: var(--text--color);
 }
 
-.auth__box-sub{
-    width: 100%;
-    padding:0rem 1rem;
-    color:var(--text--color);
-    cursor: pointer;
+.auth__logo {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: bold;
 }
-.auth__box-sub h4{
-    padding:0.5rem 0;
-    text-align: center;
-}
-.sub__main{
-    width:100%;
-    text-align: center;
-    background-color: var(--primary-color);
-    color:var(--text-color);
-    font-weight: bold;
-    margin:1rem 0 0 0;
-    border-radius: 5px;
-}
-.sub__main:hover{
-    background-color: var(--text--color);
-    color:var(--primary-color)
+input::placeholder {
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
 }
 
-.sub__main2:hover{
-    color:var(--text-color);
-    background-color: var(--primary-color);
-    border-radius: 5px;
+.auth__box-sub {
+  width: 100%;
+  padding: 0rem 1rem;
+  color: var(--text--color);
+  cursor: pointer;
 }
-.logout__img{
-    width:13rem;
-    height:12rem;
-    padding-top:2rem;
+.auth__box-sub h4 {
+  padding: 0.5rem 0;
+  text-align: center;
 }
-.incorrect__pass{
-    color:var(--error--color);
-    font-weight: bold;
-    margin-right:15rem;
+.sub__main {
+  width: 100%;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-weight: bold;
+  margin: 1rem 0 0 0;
+  border-radius: 5px;
 }
-.login__reset{
-    align-self: flex-end;
-    padding:0 1rem;
-}
-.auth__error{
-    color:var(--error--color)
-}
-
-
-@media screen and (max-width:330px) {
-    .auth__box{
-        width:15rem;
-        padding-top:3rem;
-    }
-    .auth__box-sub{
-        padding:0 1rem;
-    }
+.sub__main:hover {
+  background-color: var(--text--color);
+  color: var(--primary-color);
 }
 
-@media screen  and (max-width:475px){
-    .incorrect__pass{
-     margin-right:10rem;
-    }
+.sub__main2:hover {
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+.logout__img {
+  width: 13rem;
+  height: 12rem;
+  padding-top: 2rem;
+}
+.incorrect__pass {
+  color: var(--error--color);
+  font-weight: bold;
+  margin-right: 15rem;
+}
+.login__reset {
+  align-self: flex-end;
+  padding: 0 1rem;
+}
+.auth__error {
+  color: var(--error--color);
+}
+
+@media screen and (max-width: 330px) {
+  .auth__box {
+    width: 15rem;
+    padding-top: 3rem;
+  }
+  .auth__box-sub {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .incorrect__pass {
+    margin-right: 10rem;
+  }
 }

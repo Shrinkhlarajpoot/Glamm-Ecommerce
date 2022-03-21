@@ -1,24 +1,21 @@
-import { Footer} from "../../components";
-import "./CartScreen.css"
-import { CartCard,Cartdetails } from "./components";
+import { Footer } from "../../components";
+import "./CartScreen.css";
+import { CartCard, Cartdetails } from "./components";
 
-const CartScreen=()=>{
-    return(
+const CartScreen = () => {
+  return (
     <div>
-        <div className="cart">
-            <div>
-                <CartCard/>
-                <CartCard/>
-            </div>
-            <div className="cart__payment">
-                <Cartdetails/>
-            </div>
-          
-           </div>
-        <Footer/>
+      <div className="cart">
+        <div>
+          <CartCard />
+          <CartCard />
+        </div>
+        <div className="cart__payment">
+          <Cartdetails />
+        </div>
+      </div>
+      <Footer />
     </div>
-         
-  
-    )
-}
-export {CartScreen}
+  );
+};
+export { CartScreen };
