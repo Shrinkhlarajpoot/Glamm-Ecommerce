@@ -15,7 +15,7 @@ const Header = () => {
         <div className="header__items">
           <li
             className={
-              resnav
+              responsivenav
                 ? "fa fa-close closeicon Link_style"
                 : "fas fa-bars Link_style"
             }
@@ -50,21 +50,21 @@ const Header = () => {
           </ul>
         </div>
       </header>
-      {resnav && (
+      {responsivenav && (
         <div className="responsive__nav">
-          <Link to="/" className="Link_style">
+          <Link to="/" className="Link_style" onClick={()=>setResponsivenav(false)}>
             Home
           </Link>
-          <Link to="/products" className="Link_style">
+          <Link to="/products" className="Link_style" onClick={()=>setResponsivenav(false)}>
             Products
           </Link>
-          <Link to="/cart" className="Link_style">
+          <Link to="/cart" className="Link_style" onClick={()=>setResponsivenav(false)}>
             Wishlist
           </Link>
-          <Link to="/wishlist" className="Link_style">
+          <Link to="/wishlist" className="Link_style" onClick={()=>setResponsivenav(false)}>
             Cart
           </Link>
-          <Link to="/login" className="Link_style">
+          <Link to="/login" className="Link_style" onClick={()=>setResponsivenav(false)}>
             Login
           </Link>
         </div>
