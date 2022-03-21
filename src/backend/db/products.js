@@ -18,13 +18,23 @@ export const products = [
   },
   {
     _id: uuid(),
+    title: "Lip-Balm",
+    price: 100,
+    categoryName: "skincare",
+    rating:4,
+    isLatest:false,
+    img:"assets/Products/skin7.jpg",
+    inStock:false,
+  },
+  {
+    _id: uuid(),
     title: "Sandal-Perfume",
     price: 700,
     categoryName: "perfumes",
     rating:4,
-    isLatest:false,
+    isLatest:true,
     img:"assets/Products/newper2.jpg",
-    inStock:false,
+    inStock:true,
   },
   {
     _id: uuid(),
@@ -78,16 +88,7 @@ export const products = [
     img:"assets/Products/cos3.webp",
     inStock:true,
   },
-  {
-    _id: uuid(),
-    title: "Baby-Sampoo",
-    price: "700",
-    categoryName: "babycare",
-    rating:5,
-    isLatest:false,
-    img:"assets/Products/baby4.webp",
-    inStock:true,
-  },
+  
   {
     _id: uuid(),
     title: "Eye-Mascara",
@@ -210,16 +211,7 @@ export const products = [
     img:"assets/Products/newper1.jpg",
     inStock:true,
   },
-  {
-    _id: uuid(),
-    title: "Lip-Balm",
-    price: 100,
-    categoryName: "skincare",
-    rating:4,
-    isLatest:false,
-    img:"assets/Products/skin7.jpg",
-    inStock:false,
-  },
+
  
   {
     _id: uuid(),
@@ -290,6 +282,16 @@ export const products = [
     rating:4,
     isLatest:false,
     img:"assets/Products/skin8.webp",
+    inStock:true,
+  },
+  {
+    _id: uuid(),
+    title: "Baby-Sampoo",
+    price: "700",
+    categoryName: "babycare",
+    rating:5,
+    isLatest:true,
+    img:"assets/Products/baby4.webp",
     inStock:true,
   },
   {

@@ -90,6 +90,7 @@
   }
   .template {
     flex-wrap: wrap;
+    margin-bottom: 7rem;
   }
   .template img {
     width: 100%;

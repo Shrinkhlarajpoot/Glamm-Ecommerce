@@ -23,6 +23,7 @@
 }
 @media screen and (max-width: 370px) {
   .search__bar input {
-    min-width: 15rem;
+    min-width: 17rem;
+    padding:0 0.7rem;
   }
 }
