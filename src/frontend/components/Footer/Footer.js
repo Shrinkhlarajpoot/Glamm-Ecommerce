@@ -1,6 +1,8 @@
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 const Footer = () => {
+ const{auth}=useAuth()
   return (
     <div>
       <footer className="footer">
@@ -18,13 +20,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="list_style">
-                <Link className="Link_style2" to="/products">
+                <Link className="Link_style2"  to="/products">
                   Products
                 </Link>
               </li>
               <li className="list_style">
-                <Link className="Link_style2" to="/login">
-                  Login
+                <Link className="Link_style2"   to={auth.token?"/logout":"/login"}>
+                 {auth.token?"Login":"Logout"}
                 </Link>
               </li>
             </div>

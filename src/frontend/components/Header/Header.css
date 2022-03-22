@@ -35,9 +35,13 @@
   display: flex;
 }
 .fa-user,
+
 .fa-shopping-cart,
 .fa-heart {
   font-size: 1rem;
+}
+.fa-sign-out{
+  font-size: 1.3rem;
 }
 .fa-shopping-cart,
 .fa-heart {

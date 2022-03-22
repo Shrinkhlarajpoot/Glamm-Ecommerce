@@ -1,8 +1,10 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context/authContext";
 const Header = () => {
   const [responsivenav, setResponsivenav] = useState(false);
+  const { auth } = useAuth();
 
   return (
     <div>
@@ -24,27 +26,34 @@ const Header = () => {
           ></li>
           <ul className="header__list">
             <li>
-              <Link to="/products" className="Link_style">
+              <Link   to="/products"className="Link_style">
                 Products
               </Link>
             </li>
             <li>
-              <Link to="/cart" className="Link_style">
+              <Link to={auth.token?"/cart":"/login"} className="Link_style">
                 <i className="fas fa-shopping-cart ">
                   <div className="items__no">5</div>
                 </i>
               </Link>
             </li>
             <li>
-              <Link to="/wishlist" className="Link_style">
+              <Link   to={auth.token?"/wishlist":"/login"} className="Link_style">
                 <i className="fas fa-heart">
                   <div className="items__no">2</div>
                 </i>{" "}
               </Link>
             </li>
             <li>
-              <Link to="/login" className="Link_style">
-                <i className="fas fa-user"></i>
+              <Link
+                to={auth.token ? "/logout" : "/login"}
+                className="Link_style"
+              >
+                {auth.token ? (
+                  <i class="fa fa-sign-out"></i>
+                ) : (
+                  <i class="fa fa-user"></i>
+                )}
               </Link>
             </li>
           </ul>
@@ -52,20 +61,40 @@ const Header = () => {
       </header>
       {responsivenav && (
         <div className="responsive__nav">
-          <Link to="/" className="Link_style" onClick={()=>setResponsivenav(false)}>
+          <Link
+            to="/"
+            className="Link_style"
+            onClick={() => setResponsivenav(false)}
+          >
             Home
           </Link>
-          <Link to="/products" className="Link_style" onClick={()=>setResponsivenav(false)}>
+          <Link
+            to={auth.token?"/products":"/login"}
+            className="Link_style"
+            onClick={() =>{setResponsivenav(false) }}
+          >
             Products
           </Link>
-          <Link to="/cart" className="Link_style" onClick={()=>setResponsivenav(false)}>
+          <Link
+            to="/cart"
+            className="Link_style"
+            onClick={() => setResponsivenav(false)}
+          >
             Wishlist
           </Link>
-          <Link to="/wishlist" className="Link_style" onClick={()=>setResponsivenav(false)}>
+          <Link
+            to={auth.token?"/wishlist":"/login"}
+            className="Link_style"
+            onClick={() => setResponsivenav(false)}
+          >
             Cart
           </Link>
-          <Link to="/login" className="Link_style" onClick={()=>setResponsivenav(false)}>
-            Login
+          <Link
+            to={auth.token ? "/logout" : "/login"}
+            className="Link_style"
+            onClick={() => setResponsivenav(false)}
+          >
+            {auth.token ? "Logout" : "Login"}
           </Link>
         </div>
       )}

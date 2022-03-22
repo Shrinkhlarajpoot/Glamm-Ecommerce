@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import "./MainCard.css";
 const MainCard = ({ products }) => {
   return (
@@ -55,6 +56,7 @@ const MainCard = ({ products }) => {
                   className="btn__pri"
                   style={{ marginTop: "1.2rem" }}
                   disabled
+                  
                 >
                   Add To Cart
                 </div>

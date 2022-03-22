@@ -6,13 +6,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   max-width: 25rem;
   height: fit-content;
-  background-color: white;
+  background-color: var(--text2-color);
   margin: auto;
-  margin-top: 3rem;
+  margin-top: 1rem;
   border-radius: 5px;
   padding: 0 0.5rem;
   box-shadow: var(--box-shadow);
@@ -21,11 +20,32 @@
   position: absolute;
   top: 0.5rem;
   right: 1rem;
+  font-size: 1.2rem;
 }
 .auth__box h3 {
   font-size: 1.5rem;
   text-align: center;
   text-transform: uppercase;
+}
+.auth__inputs {
+  position: relative;
+  width: 100%;
+}
+.auth__inputs input {
+  width: 100%;
+  cursor: pointer;
+}
+.sub_main-btn {
+  padding: 0.6rem 0;
+  border: none;
+}
+.fa-eye,
+.fa-eye-slash {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
 }
 
 .auth__box input {
@@ -65,7 +85,7 @@ input::placeholder {
   background-color: var(--primary-color);
   color: var(--text-color);
   font-weight: bold;
-  margin: 1rem 0 0 0;
+  margin: 0.5rem 0 0 0;
   border-radius: 5px;
 }
 .sub__main:hover {
@@ -82,11 +102,12 @@ input::placeholder {
   width: 13rem;
   height: 12rem;
   padding-top: 2rem;
+  margin: auto;
 }
 .incorrect__pass {
   color: var(--error--color);
   font-weight: bold;
-  margin-right: 15rem;
+  text-align: start;
 }
 .login__reset {
   align-self: flex-end;
@@ -98,16 +119,19 @@ input::placeholder {
 
 @media screen and (max-width: 330px) {
   .auth__box {
-    width: 15rem;
+    width: 20rem;
     padding-top: 3rem;
   }
   .auth__box-sub {
     padding: 0 1rem;
   }
 }
-
-@media screen and (max-width: 475px) {
-  .incorrect__pass {
-    margin-right: 10rem;
+@media screen and (max-width: 259px) {
+  .auth__box {
+    width: 15rem;
+    padding-top: 3rem;
+  }
+  .auth__box-sub {
+    padding: 0 1rem;
   }
 }
