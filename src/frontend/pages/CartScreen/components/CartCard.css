@@ -21,6 +21,10 @@
   border: 0;
   font-weight: bold;
   font-size: 1.2rem;
+  cursor: pointer;
+}
+.fa-star{
+  color:var(--error--color)
 }
 .count span {
   font-size: 1.2rem;
@@ -29,6 +33,7 @@
   position: absolute;
   right: 10px;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 @media screen and (max-width: 570px) {
   .card__hori2 {

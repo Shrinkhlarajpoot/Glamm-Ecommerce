@@ -24,6 +24,10 @@ html {
   background-color: var(--text--color);
   color: var(--primary-color);
   border: none;
+  cursor: pointer;
+}
+.btn__sec:hover{
+  cursor: pointer;
 }
 
 .main__heading {
