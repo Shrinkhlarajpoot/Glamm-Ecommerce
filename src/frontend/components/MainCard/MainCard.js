@@ -1,6 +1,35 @@
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { useCart } from "../../context/cartContext";
+import { addToCartService } from "../../services";
 import "./MainCard.css";
 const MainCard = ({ products }) => {
+  const navigate = useNavigate();
+  const { auth } = useAuth();
+  const { cart, setCart } = useCart();
+  const [inCart,setInCart]=useState(false)
+  useEffect(()=>{
+ cart.cartProducts.find((prod)=>prod._id === products._id) && setInCart(true)
+ 
+  
+
+  },[cart.cartProducts])
+
+  const addToCart = async() => {
+    console.log("add to cart")
+    if (auth.isAuth) {
+      try {
+        const res = await  addToCartService(products, auth.token);
+        console.log(res)
+        if (res.status === 201) {
+          setCart((prev) => ({ ...prev, cartProducts: res.data.cart}));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <div>
       {products.inStock ? (
@@ -28,8 +57,18 @@ const MainCard = ({ products }) => {
                 {products.rating} | 5
                 <i className="fas fa-star rating__star"></i>
               </div>
-              <div className="btn__pri" style={{ marginTop: "1.2rem" }}>
-                Add To Cart
+              <div
+                className="btn__pri"
+                style={{ marginTop: "1.2rem" }}
+                onClick={
+                  auth.isAuth
+                    ? inCart
+                      ? () => navigate("/cart")
+                      : () => addToCart()
+                    : () => navigate("/login")
+                }
+              >
+                {inCart ? "View in Cart" :"Add to Cart"}
               </div>
               <div className="btn__sec">Add To WishList</div>
             </div>
@@ -53,10 +92,9 @@ const MainCard = ({ products }) => {
                   <i className="fas fa-star rating__star"></i>
                 </div>
                 <div
-                  className="btn__pri"
+                  className="btn__pri btn"
                   style={{ marginTop: "1.2rem" }}
                   disabled
-                  
                 >
                   Add To Cart
                 </div>

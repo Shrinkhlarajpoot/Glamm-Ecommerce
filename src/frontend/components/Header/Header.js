@@ -2,9 +2,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
+import { useCart } from "../../context/cartContext";
 const Header = () => {
   const [responsivenav, setResponsivenav] = useState(false);
   const { auth } = useAuth();
+  const { cart } = useCart();
 
   return (
     <div>
@@ -26,19 +28,22 @@ const Header = () => {
           ></li>
           <ul className="header__list">
             <li>
-              <Link   to="/products"className="Link_style">
+              <Link to="/products" className="Link_style">
                 Products
               </Link>
             </li>
             <li>
-              <Link to={auth.token?"/cart":"/login"} className="Link_style">
+              <Link to={auth.token ? "/cart" : "/login"} className="Link_style">
                 <i className="fas fa-shopping-cart ">
-                  <div className="items__no">5</div>
+                  <div className="items__no">{cart.cartProducts.length}</div>
                 </i>
               </Link>
             </li>
             <li>
-              <Link   to={auth.token?"/wishlist":"/login"} className="Link_style">
+              <Link
+                to={auth.token ? "/wishlist" : "/login"}
+                className="Link_style"
+              >
                 <i className="fas fa-heart">
                   <div className="items__no">2</div>
                 </i>{" "}
@@ -69,9 +74,11 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to={auth.token?"/products":"/login"}
+            to={auth.token ? "/products" : "/login"}
             className="Link_style"
-            onClick={() =>{setResponsivenav(false) }}
+            onClick={() => {
+              setResponsivenav(false);
+            }}
           >
             Products
           </Link>
@@ -83,7 +90,7 @@ const Header = () => {
             Wishlist
           </Link>
           <Link
-            to={auth.token?"/wishlist":"/login"}
+            to={auth.token ? "/wishlist" : "/login"}
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
