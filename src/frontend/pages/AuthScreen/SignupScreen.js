@@ -1,21 +1,148 @@
 import "./AuthScreen.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/authContext";
+import { ValidChecker } from "../../utils";
+import { Footer } from "../../components/Footer/Footer";
+import { signUpService } from "../../services";
 const SignupScreen = () => {
+  const { auth, setAuth, showpassword, setShowPassword } = useAuth();
+  const [showpassword1, setShowPassword1] = useState(false);
+  const [submit, setSubmit] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
+  const [Form, setForm] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  const navigate = useNavigate();
+  useEffect(() => {
+    (async () => {
+      if (submit && Object.values(errors).length === 0) {
+        const token = await signUpService(
+          Form.firstname,
+          Form.lastname,
+          Form.email,
+          Form.password
+        );
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("isAuth", true);
+        setAuth({
+          token: token,
+          isAuth: true,
+        });
+        navigate("/login");
+      }
+    })();
+  }, [errors]);
+
+  const SubmitHandler = async (e) => {
+    e.preventDefault();
+    setSubmit(true);
+    setErrors(() => ValidChecker(Form));
+  };
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...Form, [name]: value });
+  };
+
   return (
     <div>
-      <div className="auth__box">
+      <form className="auth__box" onSubmit={(e) => SubmitHandler(e)}>
         <h3>
           your account for everything
           <br />
           <span className="auth__logo">GLAM.</span>
         </h3>
+        <div>Please Use Unique Mail ID</div>
         <div className="auth__inputs">
-          <input type="text" placeholder="Username" className="username" />
-          <input type="text" placeholder="E-mail" />
-          <input type="text" placeholder="Password" />
+          <input
+            type="text"
+            placeholder="First-Name"
+            required
+            name="firstname"
+            value={Form.firstname}
+            onChange={(e) => changeHandler(e)}
+          />
+          {errors.firstname && (
+            <div className="incorrect__pass">{errors.firstname}</div>
+          )}
+          <input
+            type="text"
+            placeholder="Last-Name"
+            required
+            name="lastname"
+            value={Form.lastname}
+            onChange={changeHandler}
+          />
+          {errors.lastname && (
+            <div className="incorrect__pass">{errors.lastname}</div>
+          )}
+          <input
+            type="email"
+            placeholder="E-mail"
+            required
+            name="email"
+            value={Form.email}
+            onChange={(e) => changeHandler(e)}
+          />
+          {errors.email && (
+            <div className="incorrect__pass">{errors.email}</div>
+          )}
+          <div className="auth__inputs">
+            <input
+              type={showpassword ? "text" : "password"}
+              placeholder="Password"
+              value={Form.password}
+              required
+              name="password"
+              onChange={(e) => changeHandler(e)}
+            />
+            {errors.password && (
+              <div className="incorrect__pass">{errors.password}</div>
+            )}
+            {errors.password1 && (
+              <div className="incorrect__pass">{errors.password1}</div>
+            )}
+            <i
+              class={showpassword ? "fa fa-eye" : "fa fa-eye-slash"}
+              onClick={() => setShowPassword(!showpassword)}
+            ></i>
+          </div>
+          <div className="auth__inputs">
+            <input
+              type={showpassword1 ? "text" : "password"}
+              placeholder="Re-Password"
+              name="confirmpassword"
+              value={Form.confirmpassword}
+              required
+              onChange={(e) => changeHandler(e)}
+            />
+            {errors.confirmpassword && (
+              <div className="incorrect__pass">{errors.confirmpassword}</div>
+            )}
+            {errors.passwordnotmatch && (
+              <div className="incorrect__pass">{errors.passwordnotmatch}</div>
+            )}
+            <i
+              class={showpassword1 ? "fa fa-eye" : "fa fa-eye-slash"}
+              onClick={() => setShowPassword1(!showpassword1)}
+            ></i>
+          </div>
         </div>
+
         <div className="auth__box-sub">
-          <h4 className="sub__main">SIGNUP</h4>
+          <button
+            className="sub__main sub_main-btn"
+            onClick={(e) => SubmitHandler(e)}
+          >
+            SIGNUP
+          </button>
           <h4 className="sub__main2 ">
             <Link to="/login" className="Link_style">
               Already have an account? LOG-IN
@@ -23,9 +150,10 @@ const SignupScreen = () => {
           </h4>
         </div>
         <li>
-          <i className="fa fa-close"></i>
+          <i className="fa fa-close" onClick={() => navigate("/")}></i>
         </li>
-      </div>
+      </form>
+      <Footer/>
     </div>
   );
 };
