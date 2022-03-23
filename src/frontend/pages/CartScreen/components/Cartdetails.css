@@ -8,7 +8,7 @@
   margin: 3rem 0.5rem;
 }
 .details {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--text--color);
 }
 .details__heading {
   padding: 0.5rem 0;
@@ -30,8 +30,10 @@
   border-radius: 5px;
   margin-bottom: 1rem;
   text-align: center;
+
 }
 .cart__order:hover {
   background-color: var(--text--color);
   color: var(--primary-color);
+  cursor: pointer;
 }

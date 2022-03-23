@@ -21,6 +21,7 @@
   top: 0.5rem;
   right: 1rem;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 .auth__box h3 {
   font-size: 1.5rem;
