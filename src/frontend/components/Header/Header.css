@@ -25,7 +25,7 @@
 
 .subheader__list > * {
   margin: 0 3rem 0 1rem;
-  border-bottom: 3px solid var(--text2-color);
+  border-bottom: 3px solid var(--text--color);
 }
 .subheader__list > *:hover {
   border-bottom: 3px solid car(--text--color);

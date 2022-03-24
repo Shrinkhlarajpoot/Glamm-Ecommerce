@@ -119,9 +119,8 @@ const LoginScreen = () => {
               <h4 className="sub__main2 ">Don't have an account? SIGN UP</h4>
             </Link>
           </div>
-          <li>
-            <i className="fa fa-close" onClick={() => navigate("/")}></i>
-          </li>
+
+          <i className="fa fa-close" onClick={() => navigate("/")}></i>
         </div>
       </form>
       <Footer />

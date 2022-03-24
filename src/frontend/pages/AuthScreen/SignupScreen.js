@@ -149,11 +149,10 @@ const SignupScreen = () => {
             </Link>
           </h4>
         </div>
-        <li>
-          <i className="fa fa-close" onClick={() => navigate("/")}></i>
-        </li>
+
+        <i className="fa fa-close" onClick={() => navigate("/")}></i>
       </form>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
