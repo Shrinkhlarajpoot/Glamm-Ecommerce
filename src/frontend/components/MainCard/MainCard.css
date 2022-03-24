@@ -1,16 +1,32 @@
 .card__vertical-title title {
   top: -2rem;
 }
+
 .card,
 .card__vertical {
-  max-width: 19rem;
-  margin: 0 0.2rem;
+  border: 7px solid var(--text2-color);
 }
-.rating__star{
-    color: var(--error--color);
+
+.card__vertical-title .title {
+  top: -1.2rem;
 }
-.btn__pri .btn{
-  cursor: pointer;
+.cart__unlike{
+ color:var(--error--color);
+ font-size: 1.4rem;
+}
+.like__button{
+  top: 0.2rem;
+    border: none;
+    width: 2.4rem;
+    height: 2rem;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0 2px 0 2rem;
+    background-color: var(--primary-color);
+
+}
+.like__button:hover{
+  background-color: transparent;
 }
 @media screen and (max-width: 300px) {
   .card .card__vertical {

@@ -5,6 +5,7 @@ import { useAuth } from "../../context/authContext";
 import { loginService } from "../../services";
 import { LoginValidChecker } from "../../utils";
 import { Footer } from "../../components/Footer/Footer";
+import { toast } from "react-toastify";
 const LoginScreen = () => {
   const { showpassword, setShowPassword, setAuth } = useAuth();
 
@@ -20,14 +21,16 @@ const LoginScreen = () => {
     (async () => {
       if (submit && Object.values(errors).length === 0) {
         const token = await loginService(loginForm.email, loginForm.password);
-        localStorage.setItem("token", token);
-        localStorage.setItem("isAuth", true);
-        setAuth({
-          token,
-          isAuth: true,
-        });
+        if (token) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("isAuth", true);
+          setAuth({
+            token,
+            isAuth: true,
+          });
 
-        navigate("/");
+          navigate("/");
+        }
       }
     })();
   }, [errors]);
@@ -43,83 +46,85 @@ const LoginScreen = () => {
   };
   return (
     <div>
-    <form
-      onSubmit={(e) => LoginHandler(e, loginForm.email, loginForm.password)}
-    >
-      <div className="auth__box">
-        <h3>
-          your account for everything
-          <br />
-          <span className="auth__logo">GLAM.</span>
-        </h3>
+      <form
+        onSubmit={(e) => LoginHandler(e, loginForm.email, loginForm.password)}
+      >
+        <div className="auth__box">
+          <h3>
+            your account for everything
+            <br />
+            <span className="auth__logo">GLAM.</span>
+          </h3>
 
-        <div className="auth__inputs">
-          <input
-            type="email"
-            placeholder="E-mail"
-            required
-            name="email"
-            value={loginForm.email}
-            onChange={(e) => changeHandler(e)}
-          />
-        </div>
-        {errors.email && <div className="incorrect__pass">{errors.email}</div>}
-        <div className="auth__inputs">
-          <input
-            type={showpassword ? "text" : "password"}
-            placeholder="Password"
-            name="password"
-            value={loginForm.password}
-            required
-            onChange={(e) => changeHandler(e)}
-          />
-          <i
-            class={showpassword ? "fa fa-eye" : "fa fa-eye-slash"}
-            aria-hidden="true"
-            onClick={() => setShowPassword(!showpassword)}
-          ></i>
-        </div>
-        {errors.password && (
-          <div className="incorrect__pass">{errors.password}</div>
-        )}
+          <div className="auth__inputs">
+            <input
+              type="email"
+              placeholder="E-mail"
+              required
+              name="email"
+              value={loginForm.email}
+              onChange={(e) => changeHandler(e)}
+            />
+          </div>
+          {errors.email && (
+            <div className="incorrect__pass">{errors.email}</div>
+          )}
+          <div className="auth__inputs">
+            <input
+              type={showpassword ? "text" : "password"}
+              placeholder="Password"
+              name="password"
+              value={loginForm.password}
+              required
+              onChange={(e) => changeHandler(e)}
+            />
+            <i
+              class={showpassword ? "fa fa-eye" : "fa fa-eye-slash"}
+              aria-hidden="true"
+              onClick={() => setShowPassword(!showpassword)}
+            ></i>
+          </div>
+          {errors.password && (
+            <div className="incorrect__pass">{errors.password}</div>
+          )}
 
-        <h4 className="login__reset Link_style">
-          <a href="/Forget/Forget.html " class="Link_style">
-            Forget Password?
-          </a>
-        </h4>
-
-        <div className="auth__box-sub">
-          <h4
-            className="sub__main"
-            onClick={(e) =>
-              LoginHandler(e, loginForm.email, loginForm.password)
-            }
-          >
-            LOGIN
+          <h4 className="login__reset Link_style">
+            <a href="/Forget/Forget.html " class="Link_style">
+              Forget Password?
+            </a>
           </h4>
-          <h4
-            className="sub__main2 Link_style"
-            onClick={(e) =>
-              setLoginForm({
-                ...loginForm,
-                email: "shrinkhla@gmail.com",
-                password: "S1234",
-              })
-            }
-          >
-            Login With test Credinetals
-          </h4>
-          <Link to="/signup" className="Link_style">
-            <h4 className="sub__main2 ">Don't have an account? SIGN UP</h4>
-          </Link>
+
+          <div className="auth__box-sub">
+            <h4
+              className="sub__main"
+              onClick={(e) =>
+                LoginHandler(e, loginForm.email, loginForm.password)
+              }
+            >
+              LOGIN
+            </h4>
+            <h4
+              className="sub__main2 Link_style"
+              onClick={(e) =>
+                setLoginForm({
+                  ...loginForm,
+                  email: "shrinkhla@gmail.com",
+                  password: "S1234",
+                })
+              }
+            >
+              Login With test Credinetals
+            </h4>
+            <Link to="/signup" className="Link_style">
+              <h4 className="sub__main2 ">Don't have an account? SIGN UP</h4>
+            </Link>
+          </div>
+          <li>
+            <i className="fa fa-close" onClick={() => navigate("/")}></i>
+          </li>
         </div>
-        <li>
-          <i className="fa fa-close" onClick={() => navigate("/")}></i>
-        </li>
-      </div>
-    </form>
-    <Footer/>
+      </form>
+      <Footer />
     </div>
   );
 };

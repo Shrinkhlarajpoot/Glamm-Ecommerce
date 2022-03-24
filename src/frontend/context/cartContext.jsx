@@ -1,32 +1,54 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { getFromCartService } from "../services";
 import { useAuth } from "./authContext";
 const cartContext = createContext();
 const useCart = () => useContext(cartContext);
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState({
-    cartProducts:[],
+  const cartReducer = (state, action) => {
+    switch (action.type) {
+      case "SET_CART":
+        return { ...state, cartProducts: action.payload };
+      default:
+        return state;
+    }
+  };
+  const [cart, cartdispatch] = useReducer(cartReducer, {
+    cartProducts: [],
   });
+  const [cartLoading, setcartLoading] = useState(false);
   const { auth } = useAuth();
   useEffect(
     () =>
       (async () => {
-        console.log("in use effect");
         if (auth.isAuth) {
           try {
+            setcartLoading(() => true);
             const res = await getFromCartService(auth.token);
 
-            if (res.status === 200)
-              setCart((prev) => ({ ...prev, cartProducts:  res.data.cart} ));
+            if (res.status === 200){
+              cartdispatch({
+                type: "SET_CART",
+                payload: res.data.cart,
+              });
+            setcartLoading(() => false);
+            }
           } catch (err) {
-            console.log(err.response);
+            console.log(error)
           }
-        } else {
-          setCart((prev) => ({ ...prev, cartProducts: [] }));
         }
       })(),
     [auth.isAuth]
   );
-  return <cartContext.Provider value={{cart,setCart}}>{children}</cartContext.Provider>;
+  return (
+    <cartContext.Provider value={{ cart, cartdispatch, cartLoading }}>
+      {children}
+    </cartContext.Provider>
+  );
 };
 export { useCart, CartProvider };
