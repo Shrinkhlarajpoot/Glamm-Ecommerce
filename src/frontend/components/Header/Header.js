@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { useCart } from "../../context/cartContext";
+import { useWishlist } from "../../context/wishlistContext";
 const Header = () => {
   const [responsivenav, setResponsivenav] = useState(false);
   const { auth } = useAuth();
   const { cart } = useCart();
+  const { wishlist } = useWishlist();
 
   return (
     <div>
@@ -14,6 +16,17 @@ const Header = () => {
         <div className="logo__main">
           <Link to="/" className="Link_style">
             GLAM
+          </Link>
+        </div>
+        <div class="subheader__list">
+          <Link to="/" className="Link_style">
+            Home
+          </Link>
+          <Link to="/products" className="Link_style">
+            Products
+          </Link>
+          <Link to="/products" className="Link_style">
+            About
           </Link>
         </div>
         <div className="header__items">
@@ -28,11 +41,6 @@ const Header = () => {
           ></li>
           <ul className="header__list">
             <li>
-              <Link to="/products" className="Link_style">
-                Products
-              </Link>
-            </li>
-            <li>
               <Link to={auth.token ? "/cart" : "/login"} className="Link_style">
                 <i className="fas fa-shopping-cart ">
                   <div className="items__no">{cart.cartProducts.length}</div>
@@ -44,8 +52,10 @@ const Header = () => {
                 to={auth.token ? "/wishlist" : "/login"}
                 className="Link_style"
               >
-                <i className="fas fa-heart">
-                  <div className="items__no">2</div>
+                <i className="fas fa-heart wishlist__item-count">
+                  <div className="items__no ">
+                    {wishlist.wishlistProducts.length}
+                  </div>
                 </i>{" "}
               </Link>
             </li>

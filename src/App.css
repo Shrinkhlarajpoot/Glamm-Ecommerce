@@ -8,7 +8,6 @@
   --error--color: red;
   --box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   --font-family2: ui-rounded;
-  --font-family3: "Great Vibes", cursive;
 }
 body {
   font-family: "Source Sans Pro", Roboto, Arial, sans-serif;
@@ -20,17 +19,19 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
 .btn__pri:hover {
   background-color: var(--text--color);
   color: var(--primary-color);
   border: none;
   cursor: pointer;
 }
-.btn__sec:hover{
+.btn__sec:hover {
   cursor: pointer;
 }
 
 .main__heading {
+  font-family: "Playball", cursive;
   color: var(--text--color);
   text-align: center;
   padding: 1rem 0;

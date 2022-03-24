@@ -35,6 +35,9 @@
   font-size: 1.3rem;
   cursor: pointer;
 }
+.product__details{
+  padding-left: 1rem;
+}
 @media screen and (max-width: 570px) {
   .card__hori2 {
     width: fit-content !important;

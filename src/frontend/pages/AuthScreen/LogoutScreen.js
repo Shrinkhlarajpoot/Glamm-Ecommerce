@@ -2,12 +2,14 @@ import "./AuthScreen.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { Footer } from "../../components/Footer/Footer";
+import { toast } from "react-toastify";
 const LogoutScreen = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isAuth");
+    toast.success("Logged Out sucessfully")
     setAuth({
       token: "",
       isAuth: false,

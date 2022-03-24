@@ -1,41 +1,115 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { useCart } from "../../context/cartContext";
-import { addToCartService } from "../../services";
+import { toast } from "react-toastify";
+import { useWishlist } from "../../context/wishlistContext";
+import {
+  addToCartService,
+  addToWishlistService,
+  removeFromWishlistService,
+} from "../../services";
 import "./MainCard.css";
 const MainCard = ({ products }) => {
   const navigate = useNavigate();
   const { auth } = useAuth();
-  const { cart, setCart } = useCart();
-  const [inCart,setInCart]=useState(false)
-  useEffect(()=>{
- cart.cartProducts.find((prod)=>prod._id === products._id) && setInCart(true)
- 
-  
+  const { cart, cartdispatch } = useCart();
+  const { wishlist, wishlistdispatch } = useWishlist();
+  const [inCart, setInCart] = useState(false);
+  const [inWishlist, setInWishlist] = useState(false);
+  const [wishlistloading, setwishlistLoading] = useState(false);
+  const [cartloading, setCartLoading] = useState(false)
 
-  },[cart.cartProducts])
+  useEffect(() => {
+    cart.cartProducts.find((prod) => prod._id === products._id) &&
+      setInCart(true);
+  }, [cart.cartProducts]);
+  useEffect(() => {
+    wishlist.wishlistProducts.find((prod) => prod._id === products._id)
+      ? setInWishlist(true)
+      : setInWishlist(false);
+  }, [wishlist.wishlistProducts]);
 
-  const addToCart = async() => {
-    console.log("add to cart")
+  const addToCart = async () => {
     if (auth.isAuth) {
+      setCartLoading(() => true);
       try {
-        const res = await  addToCartService(products, auth.token);
-        console.log(res)
+        const res = await addToCartService(products, auth.token);
+
         if (res.status === 201) {
-          setCart((prev) => ({ ...prev, cartProducts: res.data.cart}));
+          cartdispatch({
+            type: "SET_CART",
+            payload: res.data.cart,
+          });
+          setCartLoading(() => false);
+          toast.success(`${products.title} added to the cart`);
         }
       } catch (error) {
         console.log(error);
+        toast.error(` Cannot add ${products.title}`);
       }
+    }
+  };
+  const addToWishlist = async () => {
+    if (auth.isAuth) {
+      setwishlistLoading(() => true);
+      try {
+        const res = await addToWishlistService(products, auth.token);
+        if (res.status === 201) {
+          wishlistdispatch({
+            type: "SET_WISHLIST",
+            payload: res.data.wishlist,
+          });
+          setwishlistLoading(() => false);
+          toast.success(`${products.title} added to the wishlist`);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(` Cannot add ${products.title}`);
+      }
+    }
+  };
+  const deleteFromWishlist = async () => {
+    const res = await removeFromWishlistService(products._id, auth.token);
+    if (res.status === 200) {
+      wishlistdispatch({
+        type: "SET_WISHLIST",
+        payload: res.data.wishlist,
+      });
+      toast.success(`${products.title} removed from wishlist`);
+    } else {
+      console.log(error);
+      toast.error(` Cannot delete ${products.title}`);
     }
   };
   return (
     <div>
       {products.inStock ? (
-        <div className="card card__vertical" key={products._id}>
+        <div className="card__vertical card" key={products._id}>
+          <button
+            className="like__button  card__like "
+            disabled={wishlistloading}
+            onClick={
+              auth.isAuth
+                ? inWishlist
+                  ? () => deleteFromWishlist()
+                  : () => addToWishlist()
+                : () => navigate("/login")
+            }
+          >
+            {" "}
+            <i
+              className={
+                inWishlist
+                  ? "fa fa-heart card__like"
+                  : "far fa-heart cart__unlike card__like"
+              }
+              role="button"
+            ></i>
+          </button>
+
           {products.isLatest && (
-            <h4 className="card__vertical-title title" style={{ top: "-1rem" }}>
+            <h4 class="card__vertical-title title" style={{ top: "-1.2rem" }}>
               NEW
             </h4>
           )}
@@ -44,10 +118,7 @@ const MainCard = ({ products }) => {
             <div className="card__vertical-img">
               <img src={products.img} alt={products.title} />
             </div>
-            <div
-              className="card__vertical-content"
-              style={{ marginTop: "0px" }}
-            >
+            <div className="card__vertical-content">
               <h3>{products.title}</h3>
               <div>
                 MRP :<i className="fas fa-rupee-sign"></i>
@@ -57,8 +128,9 @@ const MainCard = ({ products }) => {
                 {products.rating} | 5
                 <i className="fas fa-star rating__star"></i>
               </div>
-              <div
-                className="btn__pri"
+              <button
+                className="btn__pri btn"
+                disabled={cartloading}
                 style={{ marginTop: "1.2rem" }}
                 onClick={
                   auth.isAuth
@@ -68,9 +140,8 @@ const MainCard = ({ products }) => {
                     : () => navigate("/login")
                 }
               >
-                {inCart ? "View in Cart" :"Add to Cart"}
-              </div>
-              <div className="btn__sec">Add To WishList</div>
+                {inCart ? "View in Cart" : "Add to Cart"}
+              </button>
             </div>
           </div>
         </div>

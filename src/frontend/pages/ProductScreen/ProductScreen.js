@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Footer, MainCard, SearchBar } from "../../components";
+import { Loader } from "../../components/Loader/Loader";
 import { useProductListing } from "../../context/productListing-context";
 import {
   getFilteredCatProducts,
@@ -12,7 +12,7 @@ import {
 import { FilterBar } from "./components/FilterBar";
 import "./ProductScreen.css";
 const ProductScreen = () => {
-  const { products, productstate, productdispatch } = useProductListing();
+  const { products, productstate, productloading } = useProductListing();
   const outofStocks = getOutofStocksProducts(
     products,
     productstate.excludeoutofstocks
@@ -36,23 +36,28 @@ const ProductScreen = () => {
     productstate.latest
   );
 
-  console.log(FinalfilteredProducts);
   return (
-    <div>
-      <SearchBar />
-      <div className="container">
-        <FilterBar />
-        <main>
-          <div className="card__container">
-            {FinalfilteredProducts &&
-              FinalfilteredProducts.map((products) => (
-                <MainCard products={products} key={products._id} />
-              ))}
+    <>
+      {!productloading ? (
+        <div>
+          <SearchBar />
+          <div className="container">
+            <FilterBar />
+            <main>
+              <div className="card__container">
+                {FinalfilteredProducts &&
+                  FinalfilteredProducts.map((products) => (
+                    <MainCard products={products} key={products._id} />
+                  ))}
+              </div>
+            </main>
           </div>
-        </main>
-      </div>
-      <Footer />
-    </div>
+          <Footer />
+        </div>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 export { ProductScreen };

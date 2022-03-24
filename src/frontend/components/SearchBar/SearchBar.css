@@ -1,7 +1,7 @@
 .search__bar {
   text-align: center;
   padding-top: 2rem;
-  margin-bottom: 4rem;
+  margin: 4rem 0 7rem 0;
 }
 .search__bar input {
   border: 1px solid var(--text-color);

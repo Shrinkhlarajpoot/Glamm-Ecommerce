@@ -1,24 +1,27 @@
 .template {
   display: flex;
   background-color: var(--bg-color);
-  height: 32rem;
+  height: 35rem;
   border-radius: 5px;
+  margin: 2rem 0;
 }
 .template img {
   width: 70%;
-  height: 32rem;
+  height: 35rem;
   align-self: center;
+  object-fit: cover;
 }
 .template__content {
-  color: var(--text2-color);
+  color: var(--text--color);
   padding: 6rem 0rem 0 2rem;
+  font-family: "Playball", cursive;
 }
 .template__content h2 {
   font-size: 2.2rem;
   margin-bottom: 1rem;
 }
 .template__content h3 {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 .template__shop {
   background-color: var(--text2-color);
@@ -35,15 +38,17 @@
   flex-wrap: wrap;
   padding: 2rem;
   margin-bottom: 5rem;
-  gap: 3rem 0;
+  gap: 3rem 1rem;
   cursor: pointer;
   transition: width 10s, height 10s;
+  background-color: black;
 }
 .card__feat {
-  width: 18rem;
-  height: 25rem;
+  width: 17rem;
+  height: 24rem;
   box-shadow: var(--box-shadow);
   position: relative;
+  border: 0.7rem solid var(--text2-color);
 }
 .card__feat:hover {
   height: 26rem;
@@ -71,9 +76,34 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 3rem 0;
   gap: 3rem 1rem;
+  background-color: var(--bg-color);
 }
-
+.card__vertical {
+  background-color:var(--text2-color);
+}
+.services {
+  display: flex;
+  margin: 7rem 0;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.quote {
+  font-family: "Playball", cursive;
+  color: var(--error--color);
+  padding: 10rem 1rem 1rem 0;
+  margin: auto;
+  text-align: center;
+}
+.quote__owner {
+  font-family: "Playball", cursive;
+  color: var(--error--color);
+  text-align: center;
+  margin: 0 0 10rem 5rem;
+}
 @media screen and (max-width: 1010px) {
   .template__heading {
     right: 1rem;
@@ -84,7 +114,7 @@
     font-size: 2rem;
   }
 }
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 963px) {
   .template__heading {
     font-size: 2rem;
   }
