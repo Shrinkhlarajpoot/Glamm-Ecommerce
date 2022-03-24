@@ -50,6 +50,11 @@ const LoginScreen = () => {
         onSubmit={(e) => LoginHandler(e, loginForm.email, loginForm.password)}
       >
         <div className="auth__box">
+          <i
+            className="fa fa-close close "
+            id="close"
+            onClick={() => navigate("/")}
+          ></i>
           <h3>
             your account for everything
             <br />
@@ -119,8 +124,6 @@ const LoginScreen = () => {
               <h4 className="sub__main2 ">Don't have an account? SIGN UP</h4>
             </Link>
           </div>
-
-          <i className="fa fa-close" onClick={() => navigate("/")}></i>
         </div>
       </form>
       <Footer />

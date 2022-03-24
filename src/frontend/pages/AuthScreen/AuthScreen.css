@@ -16,11 +16,13 @@
   padding: 0 0.5rem;
   box-shadow: var(--box-shadow);
 }
-.fa-close {
+#close {
   position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  font-size: 1.2rem;
+  right: 10px;
+
+  top: 5px;
+  font-size: 1.3rem;
+
   cursor: pointer;
 }
 .auth__box h3 {

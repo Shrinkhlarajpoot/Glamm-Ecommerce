@@ -19,13 +19,13 @@ const Header = () => {
           </Link>
         </div>
         <div class="subheader__list">
-          <Link to="/" className="Link_style">
+          <Link to="/" className="Link_style subheader__item">
             Home
           </Link>
-          <Link to="/products" className="Link_style">
+          <Link to="/products" className="Link_style subheader__item">
             Products
           </Link>
-          <Link to="/products" className="Link_style">
+          <Link to="/products" className="Link_style subheader__item">
             About
           </Link>
         </div>
@@ -97,14 +97,14 @@ const Header = () => {
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
-            Wishlist
+            Wishlist ({wishlist.wishlistProducts.length})
           </Link>
           <Link
             to={auth.token ? "/wishlist" : "/login"}
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
-            Cart
+            Cart ({cart.cartProducts.length})
           </Link>
           <Link
             to={auth.token ? "/logout" : "/login"}

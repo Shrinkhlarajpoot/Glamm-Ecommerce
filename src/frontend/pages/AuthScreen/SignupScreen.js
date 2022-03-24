@@ -54,6 +54,7 @@ const SignupScreen = () => {
   return (
     <div>
       <form className="auth__box" onSubmit={(e) => SubmitHandler(e)}>
+        <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
         <h3>
           your account for everything
           <br />
@@ -149,8 +150,6 @@ const SignupScreen = () => {
             </Link>
           </h4>
         </div>
-
-        <i className="fa fa-close" onClick={() => navigate("/")}></i>
       </form>
       <Footer />
     </div>

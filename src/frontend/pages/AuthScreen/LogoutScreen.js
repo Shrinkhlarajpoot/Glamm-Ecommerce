@@ -20,6 +20,7 @@ const LogoutScreen = () => {
   return (
     <div>
       <div className="auth__box">
+      <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
         <img src="/assets/Categories/logout.png" className="logout__img" />
         <h3>
           Oh no! You're leaving...
@@ -35,7 +36,7 @@ const LogoutScreen = () => {
           </h4>
         </div>
 
-        <i className="fa fa-close" onClick={() => navigate("/")}></i>
+      
       </div>
       <Footer />
     </div>
