@@ -10,6 +10,7 @@ let FilterInitialvalues = {
   latest: false,
   maxPrice: 1000,
   excludeoutofstocks:true,
+  search:""
 };
 const FilterReducerFun = (state, action) => {
   switch (action.type) {
@@ -58,6 +59,8 @@ const FilterReducerFun = (state, action) => {
       return { ...state, maxPrice: action.payload };
     case "FILTER_BY_RATINGS":
       return { ...state, ratings: action.payload };
+    case "FILTER_BY_SEARCH" :
+      return {...state,search:action.payload}
     case "CLEAR":
       return {
         sortBy: "",
@@ -70,6 +73,7 @@ const FilterReducerFun = (state, action) => {
         ratings: 1,
         latest: false,
         maxPrice: 1000,
+      
       };
     default:
       return state;

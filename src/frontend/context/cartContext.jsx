@@ -39,7 +39,7 @@ const CartProvider = ({ children }) => {
             setcartLoading(() => false);
             }
           } catch (err) {
-            console.log(error)
+            console.log(err)
           }
         }
       })(),

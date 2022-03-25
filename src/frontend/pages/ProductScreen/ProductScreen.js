@@ -8,15 +8,18 @@ import {
   getPricedProducts,
   getRatedProducts,
   getSortedProducts,
+  getSearchedProducts,
 } from "../../utils";
 import { FilterBar } from "./components/FilterBar";
 import "./ProductScreen.css";
 const ProductScreen = () => {
   const { products, productstate, productloading } = useProductListing();
+  const searchedProducts = getSearchedProducts(products,productstate.search)
   const outofStocks = getOutofStocksProducts(
-    products,
+    searchedProducts,
     productstate.excludeoutofstocks
   );
+ 
   const sortedProducts = getSortedProducts(outofStocks, productstate.sortBy);
   const filteredProducts = getFilteredCatProducts(
     sortedProducts,

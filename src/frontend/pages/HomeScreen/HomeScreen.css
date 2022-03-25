@@ -40,7 +40,7 @@
   margin-bottom: 5rem;
   gap: 3rem 1rem;
   cursor: pointer;
-  transition: width 10s, height 10s;
+
   background-color: black;
 }
 .card__feat {
@@ -49,10 +49,10 @@
   box-shadow: var(--box-shadow);
   position: relative;
   border: 0.7rem solid var(--text2-color);
+  transition: 0.3s all;
 }
 .card__feat:hover {
-  height: 26rem;
-  width: 19rem;
+  transform: scale(1.1);
 }
 
 .img__feat {
@@ -81,7 +81,7 @@
   background-color: var(--bg-color);
 }
 .card__vertical {
-  background-color:var(--text2-color);
+  background-color: var(--text2-color);
 }
 .services {
   display: flex;
@@ -135,5 +135,10 @@
   }
   .template__shop {
     margin: auto;
+  }
+}
+@media screen and (max-width:324px) {
+  .services{
+    margin-top: 10rem;
   }
 }

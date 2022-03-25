@@ -6,4 +6,5 @@ export {LoginScreen} from "./AuthScreen/LoginScreen"
 export {LogoutScreen} from "./AuthScreen/LogoutScreen"
 export {SignupScreen} from "./AuthScreen/SignupScreen"
 export {ForgetpassScreen} from "./AuthScreen/ForgetpassScreen"
+export {SingleProduct} from "./SingleProduct/SingleProduct"
 
