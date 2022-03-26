@@ -1,4 +1,4 @@
-import { useProductListing } from "../../context/productListing-context";
+import { useProductListing } from "../../context";
 import "./SearchBar.css";
 const SearchBar = () => {
   const { productstate, productdispatch } = useProductListing();

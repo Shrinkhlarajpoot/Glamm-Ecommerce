@@ -3,17 +3,8 @@ import { Sumofprice, Sumoflength } from "../../../utils";
 import "./Cartdetails.css";
 const Cartdetails = () => {
   const { cart } = useCart();
-  console.log(cart.cartProducts, "hello");
-  let totalQuantityofitems;
-  let totalPriceofitems;
- 
-  if (cart.cartProducts.length > 0) {
-    totalQuantityofitems = Sumoflength(cart.cartProducts);
-    totalPriceofitems = Sumofprice(cart.cartProducts);
-  } else {
-    totalQuantityofitems = 0;
-    totalPriceofitems = 0;
-  }
+ const totalQuantityofitems = Sumoflength(cart.cartProducts);
+ const totalPriceofitems = Sumofprice(cart.cartProducts);
 
   return (
     <div>

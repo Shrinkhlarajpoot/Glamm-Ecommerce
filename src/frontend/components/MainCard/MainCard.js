@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
-import { useCart } from "../../context/cartContext";
-import { toast } from "react-toastify";
-import { useWishlist } from "../../context/wishlistContext";
-import {
-  addToCartService,
-  addToWishlistService,
-  removeFromWishlistService,
-} from "../../services";
+import { useAuth, useCart, useWishlist } from "../../context";
+
 import "./MainCard.css";
+
 const MainCard = ({ products }) => {
   const navigate = useNavigate();
   const { auth } = useAuth();
-  const { cart, cartdispatch } = useCart();
-  const { wishlist, wishlistdispatch } = useWishlist();
+  const { cart, cartloading, addToCart } = useCart();
+  const { wishlist, addToWishlist, wishlistloading, deleteFromWishlist } =
+    useWishlist();
   const [inCart, setInCart] = useState(false);
   const [inWishlist, setInWishlist] = useState(false);
-  const [wishlistloading, setwishlistLoading] = useState(false);
-  const [cartloading, setCartLoading] = useState(false)
+  const [selectedimg, setSelectedImg] = useState(products.img[0]);
 
   useEffect(() => {
     cart.cartProducts.find((prod) => prod._id === products._id) &&
@@ -30,58 +24,6 @@ const MainCard = ({ products }) => {
       : setInWishlist(false);
   }, [wishlist.wishlistProducts]);
 
-  const addToCart = async () => {
-    if (auth.isAuth) {
-      setCartLoading(() => true);
-      try {
-        const res = await addToCartService(products, auth.token);
-
-        if (res.status === 201) {
-          cartdispatch({
-            type: "SET_CART",
-            payload: res.data.cart,
-          });
-          setCartLoading(() => false);
-          toast.success(`${products.title} added to the cart`);
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error(` Cannot add ${products.title}`);
-      }
-    }
-  };
-  const addToWishlist = async () => {
-    if (auth.isAuth) {
-      setwishlistLoading(() => true);
-      try {
-        const res = await addToWishlistService(products, auth.token);
-        if (res.status === 201) {
-          wishlistdispatch({
-            type: "SET_WISHLIST",
-            payload: res.data.wishlist,
-          });
-          setwishlistLoading(() => false);
-          toast.success(`${products.title} added to the wishlist`);
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error(` Cannot add ${products.title}`);
-      }
-    }
-  };
-  const deleteFromWishlist = async () => {
-    const res = await removeFromWishlistService(products._id, auth.token);
-    if (res.status === 200) {
-      wishlistdispatch({
-        type: "SET_WISHLIST",
-        payload: res.data.wishlist,
-      });
-      toast.success(`${products.title} removed from wishlist`);
-    } else {
-      console.log(error);
-      toast.error(` Cannot delete ${products.title}`);
-    }
-  };
   return (
     <div>
       {products.inStock ? (
@@ -92,8 +34,8 @@ const MainCard = ({ products }) => {
             onClick={
               auth.isAuth
                 ? inWishlist
-                  ? () => deleteFromWishlist()
-                  : () => addToWishlist()
+                  ? () => deleteFromWishlist(products)
+                  : () => addToWishlist(products)
                 : () => navigate("/login")
             }
           >
@@ -116,10 +58,19 @@ const MainCard = ({ products }) => {
 
           <div className="card__vertical-maincontent">
             <div className="card__vertical-img">
-              <img src={products.img} alt={products.title} />
+              <img
+                src={selectedimg}
+                alt={products.title}
+                onClick={() => navigate(`/${products.id}`)}
+                onMouseOver={() => setSelectedImg(products.img[1])}
+                onMouseLeave={() => setSelectedImg(products.img[0])}
+              />
             </div>
-            <div className="card__vertical-content">
-              <h3>{products.title}</h3>
+            <div
+              className="card__vertical-content"
+              style={{ margin: "1px 1px" }}
+            >
+              <h3>{products.title.toUpperCase()}</h3>
               <div>
                 MRP :<i className="fas fa-rupee-sign"></i>
                 {products.price}
@@ -136,7 +87,7 @@ const MainCard = ({ products }) => {
                   auth.isAuth
                     ? inCart
                       ? () => navigate("/cart")
-                      : () => addToCart()
+                      : () => addToCart(products)
                     : () => navigate("/login")
                 }
               >
@@ -169,7 +120,7 @@ const MainCard = ({ products }) => {
                 >
                   Add To Cart
                 </div>
-                <div className="btn__sec" disabled>
+                <div className="btn__sec" disabled={true}>
                   Add To WishList
                 </div>
               </div>

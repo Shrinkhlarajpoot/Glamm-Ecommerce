@@ -1,12 +1,11 @@
-import "./AuthScreen.css";
+import "./Auth.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../context";
 import { loginService } from "../../services";
 import { LoginValidChecker } from "../../utils";
 import { Footer } from "../../components/Footer/Footer";
-import { toast } from "react-toastify";
-const LoginScreen = () => {
+const Login = () => {
   const { showpassword, setShowPassword, setAuth } = useAuth();
 
   const [submit, setSubmit] = useState(false);
@@ -130,4 +129,4 @@ const LoginScreen = () => {
     </div>
   );
 };
-export { LoginScreen };
+export { Login};

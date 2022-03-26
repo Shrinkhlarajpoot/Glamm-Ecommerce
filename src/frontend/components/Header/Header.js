@@ -1,9 +1,7 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/authContext";
-import { useCart } from "../../context/cartContext";
-import { useWishlist } from "../../context/wishlistContext";
+import { useAuth, useCart, useWishlist } from "../../context";
 const Header = () => {
   const [responsivenav, setResponsivenav] = useState(false);
   const { auth } = useAuth();
@@ -93,14 +91,14 @@ const Header = () => {
             Products
           </Link>
           <Link
-            to="/cart"
+            to="/wishlist"
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
             Wishlist ({wishlist.wishlistProducts.length})
           </Link>
           <Link
-            to={auth.token ? "/wishlist" : "/login"}
+            to={auth.token ? "/cart" : "/login"}
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
