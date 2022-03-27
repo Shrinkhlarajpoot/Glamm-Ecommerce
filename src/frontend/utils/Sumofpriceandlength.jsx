@@ -1,6 +1,5 @@
 const Sumoflength = (array) => {
-  console.log("heelo");
-  return array.reduce((accum, initial) => (accum = accum + initial.qty), 0);
+ return array.reduce((accum, initial) => (accum = accum + initial.qty), 0);
 };
 
 const Sumofprice = (array) => {

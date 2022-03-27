@@ -1,6 +1,6 @@
-import { Footer, MainCard, SearchBar } from "../../components";
-import { Loader } from "../../components/Loader/Loader";
-import { useProductListing } from "../../context/productListing-context";
+import { useState } from "react";
+import { Footer, MainCard, SearchBar, Loader } from "../../components";
+import { useProductListing } from "../../context";
 import {
   getFilteredCatProducts,
   getLatestProducts,
@@ -11,15 +11,17 @@ import {
   getSearchedProducts,
 } from "../../utils";
 import { FilterBar } from "./components/FilterBar";
-import "./ProductScreen.css";
-const ProductScreen = () => {
+import "./Product.css";
+const Product = () => {
+  const [showFilter, setShowFilter] = useState(false);
+
   const { products, productstate, productloading } = useProductListing();
-  const searchedProducts = getSearchedProducts(products,productstate.search)
+  const searchedProducts = getSearchedProducts(products, productstate.search);
   const outofStocks = getOutofStocksProducts(
     searchedProducts,
     productstate.excludeoutofstocks
   );
- 
+
   const sortedProducts = getSortedProducts(outofStocks, productstate.sortBy);
   const filteredProducts = getFilteredCatProducts(
     sortedProducts,
@@ -43,9 +45,15 @@ const ProductScreen = () => {
     <>
       {!productloading ? (
         <div>
+          <i
+            class="fa fa-filter"
+            onClick={() => setShowFilter(!showFilter)}
+          ></i>
           <SearchBar />
+
           <div className="container">
-            <FilterBar />
+            <FilterBar showFilter={showFilter} />
+
             <main>
               <div className="card__container">
                 {FinalfilteredProducts &&
@@ -63,4 +71,4 @@ const ProductScreen = () => {
     </>
   );
 };
-export { ProductScreen };
+export { Product };

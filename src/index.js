@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { ProductProvider } from "./frontend/context/productListing-context";
-import { AuthProvider } from "./frontend/context/authContext";
-import { CartProvider } from "./frontend/context/cartContext";
-import { WishlistProvider } from "./frontend/context/wishlistContext";
+import {
+  AuthProvider,
+  ProductProvider,
+  CartProvider,
+  WishlistProvider,
+} from "./frontend/context";
 
 // Call make Server
 makeServer();

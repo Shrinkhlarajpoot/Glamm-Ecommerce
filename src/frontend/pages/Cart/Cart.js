@@ -1,10 +1,9 @@
-import { Footer } from "../../components";
-import { Loader } from "../../components/Loader/Loader";
-import { useCart } from "../../context/cartContext";
-import "./CartScreen.css";
+import { Footer,Loader} from "../../components";
+import {useCart } from "../../context";
+import "./Cart.css";
 import { CartCard, Cartdetails } from "./components";
 
-const CartScreen = () => {
+const Cart= () => {
   const { cart, cartLoading } = useCart();
   return (
     <div>
@@ -28,6 +27,7 @@ const CartScreen = () => {
           
           </div>
           <Footer />
+        
         </>
       ) : (
         <Loader />
@@ -35,4 +35,4 @@ const CartScreen = () => {
     </div>
   );
 };
-export { CartScreen };
+export { Cart};

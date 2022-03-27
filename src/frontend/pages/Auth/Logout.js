@@ -1,9 +1,9 @@
-import "./AuthScreen.css";
+import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../context";
 import { Footer } from "../../components/Footer/Footer";
 import { toast } from "react-toastify";
-const LogoutScreen = () => {
+const Logout = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
   const logoutHandler = () => {
@@ -20,7 +20,7 @@ const LogoutScreen = () => {
   return (
     <div>
       <div className="auth__box">
-      <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
+        <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
         <img src="/assets/Categories/logout.png" className="logout__img" />
         <h3>
           Oh no! You're leaving...
@@ -35,11 +35,9 @@ const LogoutScreen = () => {
             YES LOG ME OUT
           </h4>
         </div>
-
-      
       </div>
       <Footer />
     </div>
   );
 };
-export { LogoutScreen };
+export { Logout };
