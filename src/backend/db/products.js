@@ -239,7 +239,7 @@ export const products = [
     rating: 4,
     isLatest: false,
     img: ["https://marvel-b1-cdn.bc0a.com/f00000000236182/hudabeauty.com/dw/image/v2/BCNC_PRD/on/demandware.static/-/Sites-huda-master-catalog/default/dwb0b7f4b1/images/sfra/foundation_stick/newimages/group.jpg?sw=630&sh=630",
-  "https://marvel-b1-cdn.bc0a.com/f00000000236182/hudabeauty.com/dw/image/v2/BCNC_PRD/on/demandware.static/-/Sites-huda-master-catalog/default/dwb0b7f4b1/images/sfra/foundation_stick/newimages/group.jpg?sw=630&sh=630",
+"https://images-static.nykaa.com/media/catalog/product/5/d/5d4ebe0hudab00000037__4_.jpg",
 "https://marvel-b1-cdn.bc0a.com/f00000000236182/hudabeauty.com/dw/image/v2/BCNC_PRD/on/demandware.static/-/Sites-huda-master-catalog/default/dwd96f0a54/images/sfra/waterjelly/Image2.jpg?sw=630&sh=630"],
     inStock: true,
     description:"Water Jelly is an ultra-hydrating primer that smooths and quenches skin with a surge of moisture to create the perfect canvas that’s ready to grip makeup in place for long-lasting, flawless wear. This moisture-packed primer will keep your skin balanced all day long while the activated makeup grip creates the perfect texture for makeup. The unique jelly texture melts into the skin for instant hydration"

@@ -9,8 +9,7 @@
   font-family: "Playball", cursive;
   font-size: 1.2rem;
   border-bottom: var(--box-shadow);
-
-  margin-bottom: 1rem;
+ margin-bottom: 1rem;
 }
 .logo__main {
   width: 10rem;
@@ -77,15 +76,15 @@
 }
 .responsive__nav {
   height: 100vh;
-  width: 100vw;
-  z-index: 999;
+  width:90vw;
+  z-index:2;
+  position: fixed;
   background-color: var(--bg-color);
   color: var(--text--color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 300ms ease;
 }
 .responsive__nav > * {
   font-size: 1.3rem;

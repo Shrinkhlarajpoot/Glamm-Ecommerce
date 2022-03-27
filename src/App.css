@@ -21,9 +21,9 @@ html {
 }
 
 .btn__pri:hover {
-  background-color: var(--text--color);
-  color: var(--primary-color);
-  border: none;
+  background-color: var(--text--color); 
+color: var(--primary-color);
+border:2px solid var(--text--color);
   cursor: pointer;
 }
 .btn__sec:hover {

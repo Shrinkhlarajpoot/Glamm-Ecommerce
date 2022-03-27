@@ -13,38 +13,24 @@ import { toast } from "react-toastify";
 const CartCard = ({ product }) => {
   const [inWishlist, setInWishlist] = useState(false);
   const { auth } = useAuth();
-  const { cartdispatch } = useCart();
+  const { cartdispatch,removeFromCart } = useCart();
   const { wishlist, wishlistdispatch } = useWishlist();
-  const[updating,setUpdating]=useState(false)
+  const [updating, setUpdating] = useState(false);
   const navigate = useNavigate();
 
-  const removeFromCart = async () => {
-    const res = await removeFromCartService(product._id, auth.token);
-    if (res.status === 200) {
-      cartdispatch({
-        type: "SET_CART",
-        payload: res.data.cart,
-      });
-      toast.success(` ${product.title} removed from Cart`);
-    } else {
-      console.log(error);
-      toast.error(`Cannot remove ${product.title}`);
-    }
-  };
-  const updatecartQuantity = async (type) => {
+ const updatecartQuantity = async (type) => {
     let res = null;
     try {
-    
       if (product.qty === 1 && type === "decrement") {
-        console.log("coming");
+ 
         res = await removeFromCartService(product._id, auth.token);
-       
+
         toast.success(` ${product.title} removed from Cart`);
       } else {
-        setUpdating(()=>true)
+        setUpdating(() => true);
         res = await updateQuantityCart(product._id, auth.token, type);
         toast.info("Cart Updated Sucessfully");
-        setUpdating(()=>false)
+        setUpdating(() => false);
       }
 
       if (res.status === 200) {
@@ -54,7 +40,6 @@ const CartCard = ({ product }) => {
         });
       }
     } catch (error) {
-      console.log(error);
       toast.error("Cannot Updated Cart at the moment");
     }
   };
@@ -74,7 +59,7 @@ const CartCard = ({ product }) => {
               type: "SET_WISHLIST",
               payload: res.data.wishlist,
             });
-            console.log(res.data.wishlist);
+
             toast.success(`${product.title} added to the wishlist`);
 
             const cartItem = await removeFromCartService(
@@ -87,7 +72,7 @@ const CartCard = ({ product }) => {
                 payload: cartItem.data.cart,
               });
             } else {
-              console.log(error);
+              toast.error(`${product.title} Fail to add to Wishlist`);
             }
           }
         }
@@ -99,13 +84,15 @@ const CartCard = ({ product }) => {
 
   return (
     <div className="card__hori2" key={product._id}>
-      <i className="fa fa-close" onClick={() => removeFromCart()}></i>
+      <i className="fa fa-close" onClick={() => removeFromCart(product)}></i>
       <div className="card__hori2-maincontent">
         <img
-          src={product.img}
+          src={product.img[0]}
           alt={product.title}
           className="card__hori2-img"
+          onClick={() => navigate(`/${product.id}`)}
         />
+
         <div className="card__hori2-content">
           <h3 className="product__details">{product.title}</h3>
           <div className="product__details">
@@ -113,14 +100,21 @@ const CartCard = ({ product }) => {
             {product.price}
           </div>
           <div className="product__details">
-          {product.rating} | 5<i className="fas fa-star "></i>
+            {product.rating} | 5<i className="fas fa-star "></i>
             <div className="count">
-            <button  disabled={updating}
-            onClick={() => updatecartQuantity("decrement")}>-</button>
+              <button
+                disabled={updating}
+                onClick={() => updatecartQuantity("decrement")}
+              >
+                -
+              </button>
               <span>{product.qty}</span>
-              <button   disabled={updating}
-               onClick={() => updatecartQuantity("increment")}>+</button>
-              
+              <button
+                disabled={updating}
+                onClick={() => updatecartQuantity("increment")}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -129,17 +123,12 @@ const CartCard = ({ product }) => {
       <div className="hori2__btn">
         <div
           className="btn__pri"
-          onClick={() => (inWishlist ? navigate("/wishlist") : addToWishlist())}
+          onClick={() => (inWishlist ? navigate("/wishlist") : addToWishlist(product))}
         >
           {inWishlist ? "View in Wishlist" : "Add to Wishlist"}
         </div>
       </div>
     </div>
-
-
-
-
-
   );
 };
 export { CartCard };

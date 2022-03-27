@@ -1,10 +1,13 @@
-import { useProductListing } from "../../../context/productListing-context";
+
+import { useProductListing } from "../../../context";
 import "./FilterBar.css";
-const FilterBar = () => {
+const FilterBar = ({showFilter}) => {
+
   const { productstate, productdispatch } = useProductListing();
   return (
+ 
     <div>
-      <div class="sidebar">
+     <div className="sidebar" id={showFilter?"showFilter":"hidefilter"}> 
         <div class="filter__heading">
           <h4>Filters</h4>
           <h5
@@ -259,7 +262,10 @@ const FilterBar = () => {
           <br />
         </div>
       </div>
+
     </div>
+            
+            
   );
 };
 export { FilterBar };

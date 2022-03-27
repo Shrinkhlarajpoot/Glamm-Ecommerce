@@ -10,6 +10,9 @@
 .card__vertical-title .title {
   top: -1.2rem;
 }
+.card__vertical-img{
+  cursor: pointer;
+}
 .cart__unlike{
  color:var(--error--color);
  font-size: 1.4rem;

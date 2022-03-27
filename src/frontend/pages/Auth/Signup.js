@@ -1,11 +1,11 @@
-import "./AuthScreen.css";
+import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../context";
 import { ValidChecker } from "../../utils";
 import { Footer } from "../../components/Footer/Footer";
 import { signUpService } from "../../services";
-const SignupScreen = () => {
+const Signup = () => {
   const { auth, setAuth, showpassword, setShowPassword } = useAuth();
   const [showpassword1, setShowPassword1] = useState(false);
   const [submit, setSubmit] = useState(false);
@@ -155,4 +155,4 @@ const SignupScreen = () => {
     </div>
   );
 };
-export { SignupScreen };
+export { Signup };

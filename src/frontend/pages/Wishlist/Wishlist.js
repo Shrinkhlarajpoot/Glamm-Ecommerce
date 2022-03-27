@@ -1,8 +1,7 @@
-import { Footer, MainCard } from "../../components";
-import { Loader } from "../../components/Loader/Loader";
-import { useWishlist } from "../../context/wishlistContext";
-import "./WishlistScreen.css";
-const WishlistScreen = () => {
+import { Footer, MainCard ,Loader} from "../../components";
+import {useWishlist } from "../../context";
+import "./Wishlist.css";
+const Wishlist = () => {
   const { wishlist, wishlistLoading } = useWishlist();
 
   return (
@@ -26,4 +25,4 @@ const WishlistScreen = () => {
     </>
   );
 };
-export { WishlistScreen };
+export { Wishlist };

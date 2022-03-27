@@ -5,7 +5,13 @@ import {
   useReducer,
   useState,
 } from "react";
-import { getFromCartService, getFromWishlistService } from "../services";
+import {
+  addToWishlistService,
+  getFromWishlistService,
+  removeFromWishlistService,
+} from "../services";
+
+import { toast } from "react-toastify";
 import { useAuth } from "./authContext";
 const wishlistContext = createContext();
 const useWishlist = () => useContext(wishlistContext);
@@ -47,9 +53,45 @@ const WishlistProvider = ({ children }) => {
       })(),
     [auth.isAuth]
   );
+  const addToWishlist = async (products) => {
+    if (auth.isAuth) {
+      setwishlistLoading(() => true);
+      try {
+        const res = await addToWishlistService(products, auth.token);
+        if (res.status === 201) {
+          wishlistdispatch({
+            type: "SET_WISHLIST",
+            payload: res.data.wishlist,
+          });
+          setwishlistLoading(() => false);
+          toast.success(`${products.title} added to the wishlist`);
+        }
+      } catch (error) {
+        toast.error(` Cannot add ${products.title}`);
+      }
+    }
+  };
+  const deleteFromWishlist = async (products) => {
+    const res = await removeFromWishlistService(products._id, auth.token);
+    if (res.status === 200) {
+      wishlistdispatch({
+        type: "SET_WISHLIST",
+        payload: res.data.wishlist,
+      });
+      toast.success(`${products.title} removed from wishlist`);
+    } else {
+      toast.error(` Cannot delete ${products.title}`);
+    }
+  };
   return (
     <wishlistContext.Provider
-      value={{ wishlist, wishlistLoading, wishlistdispatch }}
+      value={{
+        wishlist,
+        wishlistLoading,
+        wishlistdispatch,
+        addToWishlist,
+        deleteFromWishlist,
+      }}
     >
       {children}
     </wishlistContext.Provider>

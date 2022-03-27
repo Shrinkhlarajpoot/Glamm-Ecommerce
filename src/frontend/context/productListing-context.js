@@ -36,6 +36,8 @@ const ProductProvider = ({ children }) => {
     })();
   }, []);
 
+  
+
   return (
     <ProductListing.Provider value={{ products, productstate, productloading,productdispatch }}>
       {children}

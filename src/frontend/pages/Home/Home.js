@@ -1,13 +1,12 @@
-import "./HomeScreen.css";
+import "./Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Footer, MainCard } from "../../components";
-import { useProductListing } from "../../context/productListing-context";
+import { Footer, MainCard ,Loader} from "../../components";
+import { useProductListing } from "../../context";
 import { getLatestProducts } from "../../utils";
-import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-toastify";
-const HomeScreen = () => {
+const Home= () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { products, productdispatch, productloading } = useProductListing();
@@ -109,4 +108,4 @@ const HomeScreen = () => {
     </>
   );
 };
-export { HomeScreen };
+export { Home};

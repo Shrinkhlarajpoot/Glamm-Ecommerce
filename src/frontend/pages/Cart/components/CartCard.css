@@ -10,6 +10,9 @@
   justify-content: center;
   align-items: center;
 }
+.card__hori2-maincontent img{
+  cursor: pointer;
+}
 .count span {
   padding: 0 0.5rem;
 }
