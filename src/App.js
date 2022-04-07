@@ -13,8 +13,7 @@ import {
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Loader,Header } from "./frontend/components";
-
+import { Pageroutes } from "./frontend/routes/Pageroutes";
 
 function App() {
   return (
@@ -24,19 +23,8 @@ function App() {
         autoClose={1500}
         position="bottom-right"
       />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/loader" element={<Loader />} />
-        <Route path="/:productId" element={<SingleProduct />} />
-      </Routes>
-   
+
+      <Pageroutes />
     </div>
   );
 }

@@ -30,6 +30,16 @@ const WishlistProvider = ({ children }) => {
   });
   const { auth } = useAuth();
 
+  useEffect(()=>{
+    if(!auth.token){
+      wishlistdispatch({
+        type:"SET_WISHLIST",
+        payload:[],
+      })
+    }
+
+  },[auth.token])
+
   useEffect(
     () =>
       (async () => {

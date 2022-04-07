@@ -1,5 +1,5 @@
 import "./Auth.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context";
 import { loginService } from "../../services";
@@ -14,6 +14,8 @@ const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
+  const location= useLocation()
+ 
   console.log(errors);
   useEffect(() => {
     (async () => {
@@ -27,7 +29,8 @@ const Login = () => {
             isAuth: true,
           });
 
-          navigate("/");
+          // navigate("/");
+          navigate(location?.state?.from?.pathname, {replace: true});
         }
       }
     })();

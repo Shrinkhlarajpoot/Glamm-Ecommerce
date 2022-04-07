@@ -15,6 +15,7 @@ const Logout = () => {
       isAuth: false,
     });
     navigate("/");
+    
   };
 
   return (

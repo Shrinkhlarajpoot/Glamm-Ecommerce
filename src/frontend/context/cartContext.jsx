@@ -30,6 +30,15 @@ const CartProvider = ({ children }) => {
   const [cartLoading, setcartLoading] = useState(false);
   const { auth } = useAuth();
   const [cartloading, setCartLoading] = useState(false);
+  useEffect(()=>{
+    if(!auth.token){
+      cartdispatch({
+        type:"SET_CART",
+        payload:[],
+      })
+    }
+
+  },[auth.token])
   useEffect(
     () =>
       (async () => {

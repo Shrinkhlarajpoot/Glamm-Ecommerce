@@ -116,7 +116,7 @@ const MainCard = ({ products }) => {
                 <div
                   className="btn__pri btn"
                   style={{ marginTop: "1.2rem" }}
-                  disabled
+                  disabled={true}
                 >
                   Add To Cart
                 </div>

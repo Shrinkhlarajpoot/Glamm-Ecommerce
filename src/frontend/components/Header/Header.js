@@ -39,17 +39,14 @@ const Header = () => {
           ></li>
           <ul className="header__list">
             <li>
-              <Link to={auth.token ? "/cart" : "/login"} className="Link_style">
+              <Link to="/cart" className="Link_style">
                 <i className="fas fa-shopping-cart ">
                   <div className="items__no">{cart.cartProducts.length}</div>
                 </i>
               </Link>
             </li>
             <li>
-              <Link
-                to={auth.token ? "/wishlist" : "/login"}
-                className="Link_style"
-              >
+              <Link to="/wishlist" className="Link_style">
                 <i className="fas fa-heart wishlist__item-count">
                   <div className="items__no ">
                     {wishlist.wishlistProducts.length}
@@ -82,7 +79,7 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to={auth.token ? "/products" : "/login"}
+            to="products"
             className="Link_style"
             onClick={() => {
               setResponsivenav(false);
@@ -98,7 +95,7 @@ const Header = () => {
             Wishlist ({wishlist.wishlistProducts.length})
           </Link>
           <Link
-            to={auth.token ? "/cart" : "/login"}
+            to="/cart"
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
