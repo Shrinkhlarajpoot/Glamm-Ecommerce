@@ -14,7 +14,7 @@ const signUpService = async (firstname, lastname, email, password) => {
     console.log(res);
     if (res.status === 201) {
       toast.success("SignUp sucessfully..Please Login to Continue")
-      return res.status.encodedToken;
+      return res.data.encodedToken;
     }
   }
     catch(error) {

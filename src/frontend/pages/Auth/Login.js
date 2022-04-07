@@ -7,8 +7,7 @@ import { LoginValidChecker } from "../../utils";
 import { Footer } from "../../components/Footer/Footer";
 const Login = () => {
   const { showpassword, setShowPassword, setAuth } = useAuth();
-
-  const [submit, setSubmit] = useState(false);
+ const [submit, setSubmit] = useState(false);
   const [errors, setErrors] = useState({});
   const [loginForm, setLoginForm] = useState({
     email: "",

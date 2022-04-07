@@ -10,25 +10,21 @@
 .card__vertical-title .title {
   top: -1.2rem;
 }
-.card__vertical-img{
+.card__vertical-img {
   cursor: pointer;
 }
-.cart__unlike{
- color:var(--error--color);
- font-size: 1.4rem;
+.cart__unlike {
+  color: var(--error--color);
+  font-size: 1.4rem;
 }
-.like__button{
+.like__button {
   top: 0.2rem;
-    border: none;
-    width: 2.4rem;
-    height: 2rem;
-    border-radius: 50%;
-    text-align: center;
-    padding: 0 2px 0 2rem;
-    background-color: var(--primary-color);
-
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  padding: 1px 2px 1px 2rem;
 }
-.like__button:hover{
+.like__button:hover {
   background-color: transparent;
 }
 @media screen and (max-width: 300px) {

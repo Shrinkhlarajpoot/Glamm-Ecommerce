@@ -84,7 +84,7 @@ const CartCard = ({ product }) => {
 
   return (
     <div className="card__hori2" key={product._id}>
-      <i className="fa fa-close" onClick={() => removeFromCart(product)}></i>
+      <i className="fa fa-close card__hori-close" onClick={() => removeFromCart(product)}></i>
       <div className="card__hori2-maincontent">
         <img
           src={product.img[0]}
