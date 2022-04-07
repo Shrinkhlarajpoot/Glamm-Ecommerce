@@ -61,7 +61,7 @@ const MainCard = ({ products }) => {
               <img
                 src={selectedimg}
                 alt={products.title}
-                onClick={() => navigate(`/${products.id}`)}
+                onClick={() => navigate(`/product/${products.id}`)}
                 onMouseOver={() => setSelectedImg(products.img[1])}
                 onMouseLeave={() => setSelectedImg(products.img[0])}
               />

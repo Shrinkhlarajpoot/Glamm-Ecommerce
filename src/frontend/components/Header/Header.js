@@ -12,12 +12,12 @@ const Header = () => {
     <div>
       <header className="header">
         <div className="logo__main">
-          <Link to="/" className="Link_style">
+          <Link to="/home" className="Link_style">
             GLAM
           </Link>
         </div>
         <div class="subheader__list">
-          <Link to="/" className="Link_style subheader__item">
+          <Link to="/home" className="Link_style subheader__item">
             Home
           </Link>
           <Link to="/products" className="Link_style subheader__item">
@@ -72,7 +72,7 @@ const Header = () => {
       {responsivenav && (
         <div className="responsive__nav">
           <Link
-            to="/"
+            to="/home"
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >

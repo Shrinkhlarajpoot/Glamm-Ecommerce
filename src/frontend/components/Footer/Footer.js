@@ -15,7 +15,7 @@ const Footer = () => {
             Links to follow
             <div className="footer_list">
               <li className="list_style">
-                <Link className="Link_style2" to="/">
+                <Link className="Link_style2" to="/home">
                   Home
                 </Link>
               </li>

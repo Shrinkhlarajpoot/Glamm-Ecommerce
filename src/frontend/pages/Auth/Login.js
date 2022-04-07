@@ -29,8 +29,9 @@ const Login = () => {
             isAuth: true,
           });
 
-          // navigate("/");
+     
           navigate(location?.state?.from?.pathname, {replace: true});
+         
         }
       }
     })();
@@ -54,7 +55,7 @@ const Login = () => {
           <i
             className="fa fa-close close "
             id="close"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/home")}
           ></i>
           <h3>
             your account for everything

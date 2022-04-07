@@ -14,14 +14,14 @@ const Logout = () => {
       token: "",
       isAuth: false,
     });
-    navigate("/");
+    navigate("/home");
     
   };
 
   return (
     <div>
       <div className="auth__box">
-        <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
+        <i className="fa fa-close" id="close" onClick={() => navigate("/home")}></i>
         <img src="/assets/Categories/logout.png" className="logout__img" />
         <h3>
           Oh no! You're leaving...

@@ -6,4 +6,5 @@ export {Login} from "./Auth/Login"
 export {Logout} from "./Auth/Logout"
 export {Signup} from "./Auth/Signup"
 export {SingleProduct} from "./SingleProduct/SingleProduct"
+export {ErrorPage} from "./ErrorPage/ErrorPage"
 

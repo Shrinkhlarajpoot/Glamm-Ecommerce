@@ -54,7 +54,7 @@ const Signup = () => {
   return (
     <div>
       <form className="auth__box" onSubmit={(e) => SubmitHandler(e)}>
-        <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
+        <i className="fa fa-close" id="close" onClick={() => navigate("/home")}></i>
         <h3>
           your account for everything
           <br />

@@ -2,8 +2,9 @@ import "./SingleProduct.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth,useCart,useWishlist,useProductListing } from "../../context";
-
+console.log("from single product")
 const SingleProduct = () => {
+
   const params = useParams();
   const [inCart, setInCart] = useState(false);
   const [inWishlist, setInWishlist] = useState(false);
