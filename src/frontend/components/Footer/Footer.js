@@ -15,7 +15,7 @@ const Footer = () => {
             Links to follow
             <div className="footer_list">
               <li className="list_style">
-                <Link className="Link_style2" to="/home">
+                <Link className="Link_style2" to="/">
                   Home
                 </Link>
               </li>
@@ -25,8 +25,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="list_style">
-                <Link className="Link_style2"   to={auth.token?"/logout":"/login"}>
-                 {auth.token?"Login":"Logout"}
+                <Link className="Link_style2"   to={auth.token?"/profile":"/login"}>
+                 {auth.token?"Profile":"Login"}
                 </Link>
               </li>
             </div>

@@ -9,7 +9,10 @@
     background-color: white;
     z-index:5;
 }
+.error_page-mainheading{
+    color:var(--primary-color)
+}
 .link_to_home{
     cursor: pointer;
-    border-bottom: 2px solid var(--prumary-color);
+    border-bottom: 2px solid var(--primary-color);
 }

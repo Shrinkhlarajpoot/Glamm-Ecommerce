@@ -55,16 +55,18 @@ const Product = () => {
             <FilterBar showFilter={showFilter} />
 
             <main>
+             {FinalfilteredProducts?.length>0?<h2 className="product_length">{` Total Products (${FinalfilteredProducts?.length})`}</h2>:null}
               <div className="card__container">
                 {FinalfilteredProducts &&
                   FinalfilteredProducts.map((products) => (
                     <MainCard products={products} key={products._id} />
                   ))}
               </div>
+              
             </main>
+            {FinalfilteredProducts?.length>0?null: <h1 className="heading_emptycart heading_nomatchitem">No Item Match for this Search.</h1>}
           </div>
-          <Footer />
-        </div>
+   </div>
       ) : (
         <Loader />
       )}

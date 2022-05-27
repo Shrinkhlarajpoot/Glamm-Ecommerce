@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context";
 import { ValidChecker } from "../../utils";
-import { Footer } from "../../components/Footer/Footer";
 import { signUpService } from "../../services";
 const Signup = () => {
   const { auth, setAuth, showpassword, setShowPassword } = useAuth();
@@ -23,20 +22,27 @@ const Signup = () => {
   useEffect(() => {
     (async () => {
       if (submit && Object.values(errors).length === 0) {
-        const token = await signUpService(
+        const res = await signUpService(
           Form.firstname,
           Form.lastname,
           Form.email,
           Form.password
         );
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("isAuth", true);
-        setAuth({
-          token: token,
-          isAuth: true,
-        });
-        navigate("/login");
+        if (res) {
+          localStorage.setItem("glamm-token", res.data.encodedToken);
+          localStorage.setItem("isAuth", true);
+          localStorage.setItem("glamm-user",JSON.stringify(res.data.foundUser))
+          setAuth({
+            token:res.data.encodedToken,
+            isAuth: true,
+            user:res.data.foundUser,
+          });
+          navigate("/login"); 
+        }
+
+
+        
       }
     })();
   }, [errors]);
@@ -54,7 +60,7 @@ const Signup = () => {
   return (
     <div>
       <form className="auth__box" onSubmit={(e) => SubmitHandler(e)}>
-        <i className="fa fa-close" id="close" onClick={() => navigate("/home")}></i>
+        <i className="fa fa-close" id="close" onClick={() => navigate("/")}></i>
         <h3>
           your account for everything
           <br />
@@ -151,8 +157,7 @@ const Signup = () => {
           </h4>
         </div>
       </form>
-      <Footer />
-    </div>
+     </div>
   );
 };
 export { Signup };

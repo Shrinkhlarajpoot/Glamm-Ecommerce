@@ -17,8 +17,7 @@ const Wishlist = () => {
               <MainCard products={products} key={products._id} />
             ))}
           </div>
-          <Footer />
-        </div>
+          </div>
       ) : (
         <Loader />
       )}

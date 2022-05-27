@@ -15,7 +15,7 @@ const MainCard = ({ products }) => {
   const [selectedimg, setSelectedImg] = useState(products.img[0]);
 
   useEffect(() => {
-    cart.cartProducts.find((prod) => prod._id === products._id) &&
+    cart?.cartProducts?.length>0 && cart?.cartProducts?.find((prod) => prod._id === products._id) &&
       setInCart(true);
   }, [cart.cartProducts]);
   useEffect(() => {
@@ -27,7 +27,7 @@ const MainCard = ({ products }) => {
   return (
     <div>
       {products.inStock ? (
-        <div className="card__vertical card" key={products._id}>
+        <div className="card__vertical card" key={products?._id}>
           <button
             className="like__button  card__like "
             disabled={wishlistloading}
@@ -50,7 +50,7 @@ const MainCard = ({ products }) => {
             ></i>
           </button>
 
-          {products.isLatest && (
+          {products?.isLatest && (
             <h4 class="card__vertical-title title" style={{ top: "-1.2rem" }}>
               NEW
             </h4>
@@ -60,23 +60,24 @@ const MainCard = ({ products }) => {
             <div className="card__vertical-img">
               <img
                 src={selectedimg}
-                alt={products.title}
-                onClick={() => navigate(`/product/${products.id}`)}
-                onMouseOver={() => setSelectedImg(products.img[1])}
-                onMouseLeave={() => setSelectedImg(products.img[0])}
+                alt={products?.title}
+                onClick={() => navigate(`/product/${products?.id}`)}
+                onMouseOver={() => setSelectedImg(products?.img[1])}
+                onMouseLeave={() => setSelectedImg(products?.img[0])}
               />
             </div>
             <div
               className="card__vertical-content"
               style={{ margin: "1px 1px" }}
             >
-              <h3>{products.title.toUpperCase()}</h3>
-              <div>
+              <h3>{products?.title?.toUpperCase()}</h3>
+              <div style={{fontSize:"1.2rem"}}>{products?.categoryName?.toUpperCase()}</div>
+              <div style={{fontWeight:"bold"}}>
                 MRP :<i className="fas fa-rupee-sign"></i>
-                {products.price}
+                {products?.price}
               </div>
               <div>
-                {products.rating} | 5
+                {products?.rating} | 5
                 <i className="fas fa-star rating__star"></i>
               </div>
               <button
@@ -97,11 +98,11 @@ const MainCard = ({ products }) => {
           </div>
         </div>
       ) : (
-        <div class="card__overlay-blur" key={products._id}>
+        <div class="card__overlay-blur" key={products?._id}>
           <div class=" card card__vertical card__overlay">
             <div class="card__vertical-maincontent">
               <div class="card__vertical-img">
-                <img src={products.img} alt={products.title} />
+                <img src={products?.img} alt={products?.title} />
               </div>
               <div class="card__vertical-content">
                 <h3>{products.title}</h3>

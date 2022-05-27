@@ -1,10 +1,9 @@
 import "./Auth.css";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link, useLocation, unstable_HistoryRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context";
 import { loginService } from "../../services";
 import { LoginValidChecker } from "../../utils";
-import { Footer } from "../../components/Footer/Footer";
 const Login = () => {
   const { showpassword, setShowPassword, setAuth } = useAuth();
  const [submit, setSubmit] = useState(false);
@@ -14,23 +13,21 @@ const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
-  const location= useLocation()
- 
-  console.log(errors);
+  const location= useLocation();
   useEffect(() => {
     (async () => {
       if (submit && Object.values(errors).length === 0) {
-        const token = await loginService(loginForm.email, loginForm.password);
-        if (token) {
-          localStorage.setItem("token", token);
+        const res = await loginService(loginForm.email, loginForm.password);
+        if (res) {
+          localStorage.setItem("glamm-token", res.data.encodedToken);
           localStorage.setItem("isAuth", true);
+          localStorage.setItem("glamm-user",JSON.stringify(res.data.foundUser))
           setAuth({
-            token,
+            token:res.data.encodedToken,
             isAuth: true,
+            user:res.data.foundUser,
           });
-
-     
-          navigate(location?.state?.from?.pathname, {replace: true});
+       navigate(-1)
          
         }
       }
@@ -55,7 +52,7 @@ const Login = () => {
           <i
             className="fa fa-close close "
             id="close"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/")}
           ></i>
           <h3>
             your account for everything
@@ -128,7 +125,6 @@ const Login = () => {
           </div>
         </div>
       </form>
-      <Footer />
     </div>
   );
 };

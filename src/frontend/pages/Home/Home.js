@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Footer, MainCard ,Loader} from "../../components";
 import { useProductListing } from "../../context";
 import { getLatestProducts } from "../../utils";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 const Home= () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -18,16 +18,15 @@ const Home= () => {
       const res = response.data.categories;
       setData(res);
     } catch (error) {
+      console.error(error)
       toast.error("Couldn't load category..Try again later");
     }
   }
   useEffect(() => getCategories(), []);
   const featureCardHandler = (category) => {
-    console.log("comingg");
-    productdispatch({
+     productdispatch({
       type: "CLEAR",
     });
-    console.log(category);
     navigate("/products");
     productdispatch({
       type: `${category}`,
@@ -100,8 +99,7 @@ const Home= () => {
           </div>
           <h1 className="quote">LOVING YOUR SKIN ISN'T VANITY IT'S SANITY</h1>
           <h3 className="quote__owner">DR.HOWARD MURAD</h3>
-          <Footer />
-        </div>
+         </div>
       ) : (
         <Loader />
       )}

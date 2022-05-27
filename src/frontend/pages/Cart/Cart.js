@@ -26,7 +26,7 @@ const Cart= () => {
             )}
           
           </div>
-          <Footer />
+       
         
         </>
       ) : (

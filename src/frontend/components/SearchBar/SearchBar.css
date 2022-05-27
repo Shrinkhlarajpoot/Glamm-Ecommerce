@@ -1,7 +1,7 @@
 .search__bar {
   text-align: center;
 
-  margin: 4rem 0 7rem 0;
+  margin: 1rem 0 3rem 0;
 }
 .search__bar input {
   border: 1px solid var(--text-color);
@@ -23,9 +23,17 @@
     min-width: 22rem;
   }
 }
+@media screen and (max-width:648px) {
+  .search__bar {
+    margin:1rem 0 1rem 0 ;
+  }
+}
 @media screen and (max-width: 370px) {
   .search__bar input {
     min-width: 20rem;
     padding: 0 0.9rem;
+  }
+  .search__bar{
+    margin: 1rem 0 2rem 0;
   }
 }

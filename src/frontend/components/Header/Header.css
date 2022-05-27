@@ -8,32 +8,37 @@
   font-weight: bolder;
   font-family: "Playball", cursive;
   font-size: 1.2rem;
-  border-bottom: var(--box-shadow);
- margin-bottom: 1rem;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1rem; 
+  position: sticky;
+  top:0;
+  left:0;
+  padding:0 1rem;
+  
 }
 .logo__main {
   width: 10rem;
   height: 3.3rem;
   text-align: center;
   font-size: 2rem;
-  margin-left: 1rem;
   font-weight: bold;
   font-family: "Playball", cursive;
   text-decoration: none;
 }
 
 .subheader__item{
-  margin: 0 3rem 0 1rem;
+  margin: 0 1.5rem 0 1rem;
+  text-transform: uppercase;
 }
 .subheader__item:hover{
-  margin: 0 3rem 0 1rem;
+
   border-bottom: 3px solid var(--text--color);
 }
 .header__items li {
   list-style: none;
   padding: 0.7rem 1.5rem;
-  margin: 0 1rem;
-  border-bottom: 3px solid var(--text2-color);
+ border-bottom: 3px solid var(--text2-color);
+ 
 }
 .header__items li:hover {
   border-bottom: 3px solid var(--text--color);
@@ -45,7 +50,7 @@
   display: flex;
 }
 .fa-user,
-.fa-shopping-cart {
+.fa-shopping-cart, .fa-user {
   font-size: 1.1rem;
 }
 .wishlist__item-count {
@@ -57,12 +62,12 @@
 .fa-shopping-cart,
 .wishlist__item-count {
   position: relative;
+  font-size: 1.4rem;
 }
-
 .items__no {
   position: absolute;
-  padding: 4px 8px;
-  top: -1.1rem;
+  padding: 3px 7px;
+  top: -1.4rem;
   border-radius: 50%;
   background-color: var(--error--color);
   color: var(--text-color);
@@ -75,8 +80,8 @@
   cursor: pointer;
 }
 .responsive__nav {
-  height: 100vh;
-  width:90vw;
+  min-height: 100vh;
+  width:70vw;
   z-index:2;
   position: fixed;
   background-color: var(--bg-color);
@@ -85,15 +90,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 .responsive__nav > * {
   font-size: 1.3rem;
   margin-bottom: 2rem;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width:780px) {
+  .subheader__item{
+    margin: 0 1.5rem 0 0.5rem;
+    text-transform: uppercase;
+  }
+  .header__items li {
+    list-style: none;
+    padding: 0.7rem 1rem;
+   border-bottom: 3px solid var(--text2-color);
+   
+  }
+  .logo__main{
+    width:5rem
+  }
+}
+@media screen and (max-width: 600px) {
   .header__list li {
     display: none;
+  }
+  .header{
+    margin-bottom: 0;
   }
   .fa-bars,
   .closeicon {
