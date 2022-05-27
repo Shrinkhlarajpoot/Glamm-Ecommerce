@@ -35,6 +35,7 @@ const Pageroutes = () => {
         <Route path="/products" element={<Product />} />
         <Route path="/loader" element={<Loader />} />
         <Route path="/*" element={<ErrorPage />} />
+        <Route path="/product/:productId" element={<SingleProduct />} />
         
 
         <Route element={<Privateroutes />}>
@@ -43,7 +44,6 @@ const Pageroutes = () => {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/loader" element={<Loader />} />
-          <Route path="/product/:productId" element={<SingleProduct />} />
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/orders" element={<Orders/>}/>
           <Route path="/addresses" element={<Addresses/>}/>
