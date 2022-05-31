@@ -1,9 +1,18 @@
 .container {
   display: flex;
+  min-height:37vh;
 }
 .card__container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 3rem 0;
+  justify-content:center;
+  align-items: center;
+  gap: 3rem 2rem;
 }
+.product_length{
+  width:90vw;
+  border-bottom:1px solid var(--primary-color);
+  text-align: right;
+}
+
+

@@ -1,0 +1,13 @@
+.address-card{
+    width:15rem;
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    padding:0 1rem;
+}
+.address-card:hover{
+    box-shadow: var(--box-shadow);
+}
+.address-card >*{
+    margin-bottom: 1rem;
+}

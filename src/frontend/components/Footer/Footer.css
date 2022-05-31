@@ -3,13 +3,14 @@
   min-width: 100vw;
   background-color: var(--text--color);
   padding: 2rem 0.5rem;
-  margin-top: 2rem;
+  margin-top:4rem;
+  bottom: 0;
   color: var(--text2-color);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 1rem;
- 
-}
+  z-index:1;
+ }
 .footer__desp {
   padding: 0 1rem;
 }

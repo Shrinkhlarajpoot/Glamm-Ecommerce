@@ -36,7 +36,6 @@ const ValidChecker = (userInput) => {
 };
 const LoginValidChecker = (userInput) => {
   const { email, password } = userInput;
-  console.log(userInput);
   const err = {};
   if (!email.match(mailFormat)) {
     err.email = "Enter valid email";

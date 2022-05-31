@@ -12,21 +12,18 @@ const Header = () => {
     <div>
       <header className="header">
         <div className="logo__main">
-          <Link to="/home" className="Link_style">
+          <Link to="/" className="Link_style">
             GLAM
           </Link>
         </div>
         <div class="subheader__list">
-          <Link to="/home" className="Link_style subheader__item">
+          <Link to="/" className="Link_style subheader__item">
             Home
           </Link>
           <Link to="/products" className="Link_style subheader__item">
             Products
           </Link>
-          <Link to="/products" className="Link_style subheader__item">
-            About
-          </Link>
-        </div>
+          </div>
         <div className="header__items">
           <li
             className={
@@ -41,29 +38,27 @@ const Header = () => {
             <li>
               <Link to="/cart" className="Link_style">
                 <i className="fas fa-shopping-cart ">
-                  <div className="items__no">{cart.cartProducts.length}</div>
+                 {cart?.cartProducts?.length>0 &&<div className="items__no">{cart.cartProducts.length}</div>}
                 </i>
               </Link>
             </li>
             <li>
               <Link to="/wishlist" className="Link_style">
                 <i className="fas fa-heart wishlist__item-count">
-                  <div className="items__no ">
-                    {wishlist.wishlistProducts.length}
-                  </div>
-                </i>{" "}
+               { wishlist?.wishlistProducts?.length>0 &&<div className="items__no ">
+                    { wishlist.wishlistProducts.length}
+                  </div>}
+                </i>
               </Link>
             </li>
             <li>
               <Link
-                to={auth.token ? "/logout" : "/login"}
+                to={auth.token ? "/profile" : "/login"}
                 className="Link_style"
               >
-                {auth.token ? (
-                  <i class="fa fa-sign-out"></i>
-                ) : (
+                
                   <i class="fa fa-user"></i>
-                )}
+                
               </Link>
             </li>
           </ul>
@@ -72,7 +67,7 @@ const Header = () => {
       {responsivenav && (
         <div className="responsive__nav">
           <Link
-            to="/home"
+            to="/"
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
@@ -102,11 +97,11 @@ const Header = () => {
             Cart ({cart.cartProducts.length})
           </Link>
           <Link
-            to={auth.token ? "/logout" : "/login"}
+            to={auth.token ? "/profile" : "/login"}
             className="Link_style"
             onClick={() => setResponsivenav(false)}
           >
-            {auth.token ? "Logout" : "Login"}
+            {auth.token ? "Profile" : "Login"}
           </Link>
         </div>
       )}

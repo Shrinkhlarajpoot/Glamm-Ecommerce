@@ -22,11 +22,21 @@ import {
   getWishlistItemsHandler,
   removeItemFromWishlistHandler,
 } from "./backend/controllers/WishlistController";
+import {
+	getAddressListHandler,
+	addAddressHandler,
+	removeAddressHandler,
+	updateAddressHandler,
+} from "./backend/controllers/AddressController";
+import { getOrderItemsHandler } from "./backend/controllers/OrdersController";
+import { addItemToOrdersHandler } from "./backend/controllers/OrdersController";
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
+import { v4 as uuid } from "uuid";
 
 export function makeServer({ environment = "development" } = {}) {
+  const Razorpay = require("razorpay");
   return new Server({
     serializers: {
       application: RestSerializer,
@@ -38,6 +48,8 @@ export function makeServer({ environment = "development" } = {}) {
       user: Model,
       cart: Model,
       wishlist: Model,
+      addressList: Model,
+      orders:Model,
     },
 
     // Runs on the start of the server
@@ -49,7 +61,20 @@ export function makeServer({ environment = "development" } = {}) {
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [] })
+        server.create("user", { ...item, cart: [], wishlist: [],addressList:[
+         {
+							_id: uuid(),
+							name: "John Doe James",
+							street: "14455 Woodland Street",
+							city: "Indore",
+							state: "Madhya Pradesh",
+							country: "India",
+							zipCode: "75893",
+							mobile: "898439020",
+						},
+					],
+          orders:[],
+         })
       );
 
       categories.forEach((item) => server.create("category", { ...item }));
@@ -85,6 +110,32 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/wishlist/:productId",
         removeItemFromWishlistHandler.bind(this)
       );
+      //address routes (private)
+      this.get("/user/address", getAddressListHandler.bind(this));
+			this.post("/user/address", addAddressHandler.bind(this));
+			this.post("/user/address/:addressId", updateAddressHandler.bind(this));
+			this.delete("/user/address/:addressId", removeAddressHandler.bind(this));
+
+      // order routes (private)
+			this.get("/user/orders", getOrderItemsHandler.bind(this));
+			this.post("/user/orders", addItemToOrdersHandler.bind(this));
+
+      this.post("/orders", async (req, res) => {
+				try {
+					const instance = new Razorpay({
+						key_id: process.env.REACT_APP_RAZORPAY_ID,
+						key_secret: process.env.REACT_APP_RAZORPAY_KEY_SECRET,
+					});
+					const options = {
+						amount: 100, // amount in smallest currency unit
+						currency: "INR",
+					};
+          const order = instance.orders.create(options);
+          res.json(order);
+				} catch (error) {
+					console.error(error)
+				}
+			});
     },
   });
 }

@@ -9,7 +9,7 @@ import {
   updateQuantityCart,
 } from "../../../services";
 import "./CartCard.css";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 const CartCard = ({ product }) => {
   const [inWishlist, setInWishlist] = useState(false);
   const { auth } = useAuth();
@@ -19,7 +19,7 @@ const CartCard = ({ product }) => {
   const navigate = useNavigate();
 
  const updatecartQuantity = async (type) => {
-    let res = null;
+  let res = null;
     try {
       if (product.qty === 1 && type === "decrement") {
  
@@ -29,7 +29,7 @@ const CartCard = ({ product }) => {
       } else {
         setUpdating(() => true);
         res = await updateQuantityCart(product._id, auth.token, type);
-        toast.info("Cart Updated Sucessfully");
+        toast.success("Cart Updated Sucessfully");
         setUpdating(() => false);
       }
 
@@ -40,6 +40,7 @@ const CartCard = ({ product }) => {
         });
       }
     } catch (error) {
+      console.log(error)
       toast.error("Cannot Updated Cart at the moment");
     }
   };

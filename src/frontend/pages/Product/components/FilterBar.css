@@ -1,14 +1,19 @@
 .sidebar {
-  background-color: var(--text2-color);
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
-  height: 28rem;
+  height: 32rem;
   border-radius: 5px;
   margin-right: 1rem;
   width: 20rem;
   padding-right: 1rem;
   overflow-x: hidden;
   overflow-y: scroll;
+  position: fixed;
+  z-index: 2;
+  padding-bottom: 2rem;
+  border-radius: 0.3rem;
+
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -101,7 +106,7 @@
   font-size: 1.5rem;
   position: absolute;
   left: 1rem;
-  top: 10rem;
+  top: 4rem;
   padding: 1rem;
   border-radius: 50%;
   margin-top: 4rem;
@@ -121,4 +126,11 @@
 }
 #hidefilter {
   display: none;
+}
+
+@media screen and (max-width:642px) {
+  .fa-filter {
+    top:7rem;
+    
+  }
 }

@@ -1,18 +1,20 @@
 import { createContext, useContext, useEffect, useState } from "react";
-const Authcontext = createContext();
+const Authcontext= createContext();
 const useAuth = () => useContext(Authcontext);
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({ token: "", isAuth: false });
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("glamm-token" || "");
+  const user =JSON.parse(localStorage.getItem("glamm-user" ||""))
+  const isAuth = localStorage.getItem("isAuth" || "")
+  const [auth, setAuth] = useState({ token:token, isAuth: false });
   const [showpassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
+ useEffect(() => {
     if (token) {
-      setAuth({ token, isAuth: true });
-    } else {
-      setAuth({ token: "", isAuth: false });
+      setAuth({ token, isAuth: true, user });
+    } 
+    else {
+      setAuth({ token: "", isAuth: false, user:"" });
     }
-  }, [token]);
+  }, [auth.token]);
 
   return (
     <Authcontext.Provider

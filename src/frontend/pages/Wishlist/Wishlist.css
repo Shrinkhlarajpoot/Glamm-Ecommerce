@@ -1,8 +1,9 @@
 .wishlist{
     display: flex;
-    justify-content: space-around;
+    justify-content:center;
     align-items: flex-start;
     flex-wrap: wrap;
     margin-top:2rem;
-    gap:4rem 0;
+    gap:3rem 2rem;
+    min-height:47vh;
 }

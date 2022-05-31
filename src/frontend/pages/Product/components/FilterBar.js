@@ -177,21 +177,7 @@ const FilterBar = ({showFilter}) => {
         <div class="filter__ratings">
           <h4 className="filter__subheading">Ratings</h4>
 
-          <label>
-            <input
-              type="radio"
-              name="ratings"
-              value="5"
-              checked={productstate.ratings === 5}
-              onChange={(e) => {
-                productdispatch({
-                  type: "FILTER_BY_RATINGS",
-                  payload: Number(e.target.value),
-                });
-              }}
-            />
-            5 stars and above
-          </label>
+        
           <br />
 
           <label>

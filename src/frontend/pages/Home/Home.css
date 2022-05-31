@@ -34,11 +34,11 @@
 }
 .featured__cards {
   display: flex;
-  justify-content: space-around;
+  justify-content:center;
   flex-wrap: wrap;
   padding: 2rem;
   margin-bottom: 5rem;
-  gap: 3rem 1rem;
+  gap: 3rem 3rem;
   cursor: pointer;
 
   background-color: black;
@@ -75,9 +75,9 @@
 .card__latest-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content:center;
   padding: 3rem 0;
-  gap: 3rem 1rem;
+  gap: 3rem 2rem;
   background-color: var(--bg-color);
 }
 .card__vertical {

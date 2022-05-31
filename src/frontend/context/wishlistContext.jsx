@@ -11,7 +11,7 @@ import {
   removeFromWishlistService,
 } from "../services";
 
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { useAuth } from "./authContext";
 const wishlistContext = createContext();
 const useWishlist = () => useContext(wishlistContext);

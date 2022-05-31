@@ -1,0 +1,71 @@
+.address-modal{
+   position: fixed;
+   top:0;
+   left:0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-width: 100vw;
+   min-height: 100vh;
+   backdrop-filter: blur(5px);
+   overflow-y: hidden;
+}
+.address-modal .address_form-detail{
+    z-index:2;
+    width: 25rem;
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem ;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10rem;
+}
+.address_form-detail >input,select{
+    width:90%;
+    margin:auto;
+    margin-bottom:1rem;
+    padding:0.4rem 1rem  !important;
+
+}
+input::placeholder{
+    color:var(--primary-color);
+    text-transform: capitalize !important;
+    font-size: 0.9rem !important;
+}
+.select_input{
+    color:var(--primary-color);
+}
+.dummy-btn{
+    background-color: var(--primary-color);
+    border: none;
+    margin: auto;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    
+}
+.dummy-btn2{
+    border:1px solid var(--primary-color);
+   margin: auto;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+.dummy-btn2:hover{
+    background-color: var(--primary-color);
+}
+
+@media screen and (max-width:370px){
+    .address-modal .address_form-detail{
+        width:20rem;
+    }
+}
