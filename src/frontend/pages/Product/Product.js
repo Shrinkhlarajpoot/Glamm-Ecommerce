@@ -52,7 +52,7 @@ const Product = () => {
           <SearchBar />
 
           <div className="container">
-            <FilterBar showFilter={showFilter} />
+            <FilterBar showFilter={showFilter} setShowFilter={setShowFilter} />
 
             <main>
              {FinalfilteredProducts?.length>0?<h2 className="product_length">{` Total Products (${FinalfilteredProducts?.length})`}</h2>:null}

@@ -96,6 +96,19 @@
   font-size: 1.3rem;
   margin-bottom: 2rem;
 }
+.nav_responsive{
+  position: relative;
+}
+.close_nav{
+  position: absolute;
+  top:1rem;
+  right:1rem;
+  font-size: 1.7rem;
+ 
+}
+.nav_responsive{
+  display: none;
+}
 
 @media screen and (max-width:780px) {
   .subheader__item{
@@ -116,6 +129,7 @@
   .header__list li {
     display: none;
   }
+  
   .header{
     margin-bottom: 0;
   }
@@ -126,4 +140,8 @@
   .subheader__list > * {
     display: none;
   }
+  .nav_responsive{
+    display:block;
+  }
 }
+

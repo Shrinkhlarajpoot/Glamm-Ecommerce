@@ -2,11 +2,15 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth, useCart, useWishlist } from "../../context";
+import { useRef } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 const Header = () => {
   const [responsivenav, setResponsivenav] = useState(false);
   const { auth } = useAuth();
   const { cart } = useCart();
   const { wishlist } = useWishlist();
+  const navRef = useRef();
+  useClickOutside(navRef,setResponsivenav);
 
   return (
     <div>
@@ -28,7 +32,7 @@ const Header = () => {
           <li
             className={
               responsivenav
-                ? "fa fa-close closeicon Link_style"
+                ?null
                 : "fas fa-bars Link_style"
             }
             id="menu__bar"
@@ -65,7 +69,19 @@ const Header = () => {
         </div>
       </header>
       {responsivenav && (
+        <div className="nav_responsive" ref={navRef}>
         <div className="responsive__nav">
+       
+           <li
+            className={
+              
+                "fa fa-close  Link_style close_nav"
+               
+            }
+         
+            onClick={() => setResponsivenav(() => !responsivenav)}
+          ></li>
+         
           <Link
             to="/"
             className="Link_style"
@@ -103,6 +119,7 @@ const Header = () => {
           >
             {auth.token ? "Profile" : "Login"}
           </Link>
+        </div>
         </div>
       )}
     </div>

@@ -27,7 +27,7 @@ const Login = () => {
             isAuth: true,
             user:res.data.foundUser,
           });
-       navigate(-1)
+       navigate("/products")
          
         }
       }

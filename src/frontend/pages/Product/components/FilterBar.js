@@ -1,12 +1,16 @@
 
+import { useRef } from "react";
 import { useProductListing } from "../../../context";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 import "./FilterBar.css";
-const FilterBar = ({showFilter}) => {
+const FilterBar = ({showFilter,setShowFilter}) => {
 
   const { productstate, productdispatch } = useProductListing();
+  const filterRef = useRef();
+  useClickOutside(filterRef,setShowFilter)
   return (
  
-    <div>
+    <div ref={filterRef}>
      <div className="sidebar" id={showFilter?"showFilter":"hidefilter"}> 
         <div class="filter__heading">
           <h4>Filters</h4>
