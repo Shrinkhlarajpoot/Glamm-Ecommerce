@@ -6,11 +6,8 @@ import "./FilterBar.css";
 const FilterBar = ({showFilter,setShowFilter}) => {
 
   const { productstate, productdispatch } = useProductListing();
-  const filterRef = useRef();
-  useClickOutside(filterRef,setShowFilter)
   return (
- 
-    <div ref={filterRef}>
+  <div>
      <div className="sidebar" id={showFilter?"showFilter":"hidefilter"}> 
         <div class="filter__heading">
           <h4>Filters</h4>
