@@ -99,7 +99,7 @@ async function displayRazorpay() {
               <div>{item?.title}</div>
               <div>{`${item?.qty} * Rs-${item?.price}`}</div>
           </div>
-          <div>{item?.price}</div>
+          <div>Rs-{item?.price}</div>
         </div>
         )}
       </div>
@@ -108,12 +108,12 @@ async function displayRazorpay() {
         <div className="checkoutdetails__heading">BILLING</div>
         <div className="checkoutdetails__content">
         <div>Total MRP</div>
-        <div>{totalPriceofitems}</div>
+        <div>Rs-{totalPriceofitems}</div>
         </div>
     
       <div className="checkoutdetails__content">
         <div>Total Discount</div>
-        <div>{totalPriceofitems * (10 / 100)}</div>
+        <div>Rs-{totalPriceofitems * (10 / 100)}</div>
         </div>
         
       <div className="checkoutdetails__content">
@@ -123,7 +123,7 @@ async function displayRazorpay() {
       </div>
       <div className="checkoutdetails__content">
         <div>Total:</div>
-        <div>{totalPriceofitems - totalPriceofitems * (10 / 100)}</div>
+        <div>Rs-{totalPriceofitems - totalPriceofitems * (10 / 100)}</div>
         
       </div>
 

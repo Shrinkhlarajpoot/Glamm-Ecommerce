@@ -37,7 +37,7 @@ const Home= () => {
       {!productloading ? (
         <div>
           <div className="template">
-            <img src="https://www.skincare.com/-/media/images/loreal/skincare/articles/featured-images/970-gigi-hadid-maybelline-makeup.jpg?h=575&la=en&w=970" />
+            <img src="./assets/Categories/template1.jpg" />
             <div className="template__content">
               <h2 className="temp__head--main">WELCOME TO GLAM </h2>
               <h3>LATEST COLLECTION</h3>
