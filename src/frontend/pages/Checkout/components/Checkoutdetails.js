@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 import axios from "axios";
 import { addOrderService, removeFromCartService } from "../../../services";
 import { useAuth } from "../../../context";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 const Checkoutdetails = ({address}) => {
   const { cart:{cartProducts,orderDetails,addressList},cartdispatch,removeAllFromCart} = useCart();
   const {auth:{token}}=useAuth()
